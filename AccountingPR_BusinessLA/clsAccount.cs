@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace AccountingPR_BusinessLA
 {
-    public class Class1
+    public class clsAccount:CRUD_BS
+
     {
+
+        public string FirstName { get; set; }
+
+        public int? age { get; set; }
     }
 }

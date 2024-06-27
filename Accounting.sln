@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting_PersentaionLA", "AccountingPR\Accounting_PersentaionLA.csproj", "{CE4DC13F-B6A5-4A95-8CDC-0A2B083EB591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting", "AccountingPR\Accounting.csproj", "{CE4DC13F-B6A5-4A95-8CDC-0A2B083EB591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting_BusinessLA", "AccountingPR_BusinessLA\Accounting_BusinessLA.csproj", "{E77C3B54-6613-4D2C-803F-777FEB9B98EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting_BL", "AccountingPR_BusinessLA\Accounting_BL.csproj", "{E77C3B54-6613-4D2C-803F-777FEB9B98EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting_DataAccsessLA", "AccountingPR_DataAccsessLA\Accounting_DataAccsessLA.csproj", "{143DC79C-CAE0-4721-9FC5-E005342C5C6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting_DAL", "AccountingPR_DataAccsessLA\Accounting_DAL.csproj", "{143DC79C-CAE0-4721-9FC5-E005342C5C6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
