@@ -1,78 +1,93 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace AccountingPR_DataAccsessLA
 {
-     public class CRUD_DB
+     public static class CRUD_DB
     {
-        public static bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
+
+        static public void SetErrorLoggingEvent(string exMessage, string sourceName = "Accounting")
         {
-            bool success = false;
 
-            using (SqlConnection connection = new SqlConnection(clsDatabaseSettings.ConnectionString))
+            if (!EventLog.SourceExists(sourceName))
             {
-                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
+                EventLog.CreateEventSource(sourceName, "Application");
 
-                    if (parameters != null)
-                    {
-                        command.Parameters.AddRange(parameters);
-                    }
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        success = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error executing command: " + ex.Message);
-                        success = false;
-                    }
-                }
             }
 
-            return success;
+
+            EventLog.WriteEntry(sourceName, exMessage, EventLogEntryType.Error);
+
         }
+        //public static bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
+        //{
+        //    bool success = false;
 
-        public static DataTable GetData(string storedProcedureName, SqlParameter[] parameters)
-        {
-            DataTable dt = new DataTable();
+        //    using (SqlConnection connection = new SqlConnection(clsConnection.ConnectionStringWinAth))
+        //    {
+        //        using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
 
-            using (SqlConnection connection = new SqlConnection(clsDatabaseSettings.ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
+        //            if (parameters != null)
+        //            {
+        //                command.Parameters.AddRange(parameters);
+        //            }
 
-                    if (parameters != null)
-                    {
-                        command.Parameters.AddRange(parameters);
-                    }
+        //            try
+        //            {
+        //                connection.Open();
+        //                command.ExecuteNonQuery();
+        //                success = true;
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine("Error executing command: " + ex.Message);
+        //                success = false;
+        //            }
+        //        }
+        //    }
 
-                    try
-                    {
-                        connection.Open();
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                            {
-                                dt.Load(reader);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error retrieving data: " + ex.Message);
-                        // You might handle exceptions differently based on your application's needs
-                    }
-                }
-            }
+        //    return success;
+        //}
 
-            return dt;
-        }
+        //public static DataTable GetData(string storedProcedureName, SqlParameter[] parameters)
+        //{
+        //    DataTable dt = new DataTable();
+
+        //    using (SqlConnection connection = new SqlConnection(clsConnection.ConnectionStringWinAth))
+        //    {
+        //        using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+
+        //            if (parameters != null)
+        //            {
+        //                command.Parameters.AddRange(parameters);
+        //            }
+
+        //            try
+        //            {
+        //                connection.Open();
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    if (reader.HasRows)
+        //                    {
+        //                        dt.Load(reader);
+        //                    }
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine("Error retrieving data: " + ex.Message);
+        //                // You might handle exceptions differently based on your application's needs
+        //            }
+        //        }
+        //    }
+
+        //    return dt;
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using AccountingPR_BusinessLA;
+﻿using AccountingPR.System_Settings;
+using AccountingPR_BusinessLA;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,17 @@ namespace AccountingPR
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void بياناتالاتصالToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConnectionFormat frm =new frmConnectionFormat();
+            frm.ShowDialog(); 
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

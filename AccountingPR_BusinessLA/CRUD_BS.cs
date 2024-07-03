@@ -11,15 +11,15 @@ namespace AccountingPR_BusinessLA
 {
      public abstract class CRUD_BS 
     {
-       public  static bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
-        {
-            return CRUD_DB.ExecuteCommand(storedProcedureName, parameters);
-        }
+       //public  static bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
+       // {
+       //     return CRUD_DB.ExecuteCommand(storedProcedureName, parameters);
+       // }
 
-        public  static DataTable GetData(string storedProcedureName, SqlParameter[] parameters)
-        {
-            return CRUD_DB.GetData(storedProcedureName, parameters);
-        }
+       // public  static DataTable GetData(string storedProcedureName, SqlParameter[] parameters)
+       // {
+       //     return CRUD_DB.GetData(storedProcedureName, parameters);
+       // }
         //public  static bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
         //{
         //    return CRUD_DB.ExecuteCommand(storedProcedureName, parameters);

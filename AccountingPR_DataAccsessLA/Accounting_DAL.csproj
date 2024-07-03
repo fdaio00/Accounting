@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="clsAccountDB.cs" />
     <Compile Include="CRUD_DB.cs" />
-    <Compile Include="clsDatabaseSettings.cs" />
+    <Compile Include="clsConnectionData.cs" />
     <Compile Include="IBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

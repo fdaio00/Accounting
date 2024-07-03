@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountingPR_DataAccsessLA
 {
-    public class clsAccountDB : CRUD_DB
+    public class clsAccountDB 
     {
         public static bool GetByID()
         {
