@@ -24,15 +24,15 @@ namespace AccountingPR_DataAccsessLA
             switch (Mode)
             {
                 case "WIN":
-                    ConnectionString = $"server = {_Server}; database = {_DB};integrated security = true;";
+                    ConnectionString = $"server = {_Server}; database = {_DB};Trusted_Connection=True;TrustServerCertificate=true;";
                     break;
 
                 case "USER":
-                    ConnectionString = $"server = {_Server}; database = {_DB};integrated security = true;user id = {_UserID} , password = {_Password}";
+                    ConnectionString = $"server = {_Server}; database = {_DB};Trusted_Connection=True;TrustServerCertificate=true;user id = {_UserID} , password = {_Password}";
                     break;
 
                 default:
-                    ConnectionString = $"server = {_Server}; database = {_DB};integrated security = true;";
+                    ConnectionString = $"server = {_Server}; database = {_DB};Trusted_Connection=True;TrustServerCertificate=true;";
                     break;
             }
 

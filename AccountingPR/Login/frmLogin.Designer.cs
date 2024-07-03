@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.chbRememberMe = new System.Windows.Forms.CheckBox();
             this.btnCancle = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -100,6 +101,7 @@
             // 
             // btnCancle
             // 
+            this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.btnCancle.Location = new System.Drawing.Point(244, 188);
@@ -110,6 +112,17 @@
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(15, 247);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(82, 16);
+            this.linkLabel1.TabIndex = 5;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "اعدادات السيرفر";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -117,7 +130,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(449, 260);
+            this.ClientSize = new System.Drawing.Size(449, 284);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.chbRememberMe);
             this.Controls.Add(this.txtPassword);
@@ -148,5 +162,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chbRememberMe;
         private System.Windows.Forms.Button btnCancle;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

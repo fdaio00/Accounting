@@ -1,4 +1,5 @@
 ﻿using AccountingPR.Global;
+using AccountingPR.System_Settings;
 using AccountingPR_BusinessLA;
 using System;
 using System.Collections.Generic;
@@ -49,8 +50,8 @@ namespace AccountingPR.Login
 
                 if (dtLogin.Rows.Count > 0 && dtLogin != null)
                 {
-                    this.Hide();
                     frmMain frm = new frmMain();
+                    this.Hide();
                     frm.Show();
                 }
                 else
@@ -88,6 +89,12 @@ namespace AccountingPR.Login
         private void btnCancle_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmConnectionFormat frm = new frmConnectionFormat();
+            frm.ShowDialog();
         }
     }
 }

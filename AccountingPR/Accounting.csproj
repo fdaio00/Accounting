@@ -32,6 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>accounting-27-104112~2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -63,6 +71,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Global\clsGlobal.cs" />
+    <Compile Include="Login\clsConfigManager.cs" />
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +175,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="accounting-27-104112.ico" />
+    <Content Include="accounting-27-104112~1.ico" />
+    <Content Include="accounting-27-104112~2.ico" />
+    <Content Include="forbidden.ico" />
+    <None Include="Resources\document3.png" />
+    <None Include="Resources\back~1.png" />
+    <None Include="Resources\document2.png" />
+    <None Include="Resources\document1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
