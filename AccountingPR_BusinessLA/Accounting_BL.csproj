@@ -44,6 +44,7 @@
     <Compile Include="clsAccount.cs" />
     <Compile Include="clsConnection.cs" />
     <Compile Include="clsLogin.cs" />
+    <Compile Include="clsSettings.cs" />
     <Compile Include="clsUsers.cs" />
     <Compile Include="CRUD_BS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

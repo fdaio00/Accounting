@@ -31,8 +31,7 @@ namespace AccountingPR.Global
             }
             catch (Exception ex)
             {
-                
-                throw;
+                clsSettings.SetErrorLoggerEvenr(ex.Message);
             }
 
 

@@ -21,7 +21,7 @@ namespace AccountingPR_BusinessLA
         {
             try
             {
-            clsConnectionData connection = new clsConnectionData();
+            clsConnectionData connection = clsConnection.GetConnection();
             SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@UserName", SqlDbType.NVarChar);
             parameters[0].Value = UserName;
@@ -36,7 +36,7 @@ namespace AccountingPR_BusinessLA
             }
             catch (Exception ex)
             {
-                CRUD_DB.SetErrorLoggingEvent(ex.Message);
+               clsSettings.SetErrorLoggerEvenr(ex.Message);
                 return null; 
             }
 

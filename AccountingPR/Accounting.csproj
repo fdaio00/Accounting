@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company\frmCompanyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\frmCompanyInfo.Designer.cs">
+      <DependentUpon>frmCompanyInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <Compile Include="System Settings\frmConnectionFormat.Designer.cs">
       <DependentUpon>frmConnectionFormat.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Company\frmCompanyInfo.resx">
+      <DependentUpon>frmCompanyInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

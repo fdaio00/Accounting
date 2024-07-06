@@ -58,7 +58,7 @@
             // txtMode
             // 
             this.txtMode.Enabled = false;
-            this.txtMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtMode.Location = new System.Drawing.Point(154, 22);
             this.txtMode.Name = "txtMode";
             this.txtMode.Size = new System.Drawing.Size(521, 30);
@@ -67,7 +67,7 @@
             // txtSeverName
             // 
             this.txtSeverName.Enabled = false;
-            this.txtSeverName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSeverName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtSeverName.Location = new System.Drawing.Point(154, 73);
             this.txtSeverName.Name = "txtSeverName";
             this.txtSeverName.Size = new System.Drawing.Size(521, 30);
@@ -86,7 +86,7 @@
             // txtDataBase
             // 
             this.txtDataBase.Enabled = false;
-            this.txtDataBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtDataBase.Location = new System.Drawing.Point(154, 124);
             this.txtDataBase.Name = "txtDataBase";
             this.txtDataBase.Size = new System.Drawing.Size(521, 30);
@@ -105,7 +105,7 @@
             // txtUserName
             // 
             this.txtUserName.Enabled = false;
-            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtUserName.Location = new System.Drawing.Point(154, 179);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(521, 30);
@@ -126,7 +126,7 @@
             // txtPassword
             // 
             this.txtPassword.Enabled = false;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtPassword.Location = new System.Drawing.Point(154, 241);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';

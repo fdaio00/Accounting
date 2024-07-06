@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.ملفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.تبديلالمستخدمToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.النسخالاحتياطيToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +55,9 @@
             this.الميزانيةالعموميةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.الأرباحوالخسائرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.مساعدةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -77,30 +77,6 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.lblUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 525);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1289, 26);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(82, 20);
-            this.toolStripStatusLabel1.Text = " المستخدم: ";
-            // 
-            // lblUser
-            // 
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(0, 20);
-            this.lblUser.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
-            // 
             // ملفToolStripMenuItem
             // 
             this.ملفToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -116,7 +92,7 @@
             // 
             this.تبديلالمستخدمToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.user;
             this.تبديلالمستخدمToolStripMenuItem.Name = "تبديلالمستخدمToolStripMenuItem";
-            this.تبديلالمستخدمToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.تبديلالمستخدمToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.تبديلالمستخدمToolStripMenuItem.Text = "تبديل المستخدم";
             // 
             // النسخالاحتياطيToolStripMenuItem
@@ -126,7 +102,7 @@
             this.استعادةنسخةمحفوظةToolStripMenuItem});
             this.النسخالاحتياطيToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.download;
             this.النسخالاحتياطيToolStripMenuItem.Name = "النسخالاحتياطيToolStripMenuItem";
-            this.النسخالاحتياطيToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.النسخالاحتياطيToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.النسخالاحتياطيToolStripMenuItem.Text = "النسخ الاحتياطي";
             // 
             // حفظنسخةاحتياطيةToolStripMenuItem
@@ -145,7 +121,7 @@
             // 
             this.تسجيلالخروجToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.sign_out;
             this.تسجيلالخروجToolStripMenuItem.Name = "تسجيلالخروجToolStripMenuItem";
-            this.تسجيلالخروجToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.تسجيلالخروجToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.تسجيلالخروجToolStripMenuItem.Text = "تسجيل الخروج";
             // 
             // تهئيةالنظامToolStripMenuItem
@@ -165,21 +141,22 @@
             // 
             this.بياناتالشركةToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.companies;
             this.بياناتالشركةToolStripMenuItem.Name = "بياناتالشركةToolStripMenuItem";
-            this.بياناتالشركةToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.بياناتالشركةToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.بياناتالشركةToolStripMenuItem.Text = "بيانات الشركة";
+            this.بياناتالشركةToolStripMenuItem.Click += new System.EventHandler(this.بياناتالشركةToolStripMenuItem_Click);
             // 
             // المستخدمونToolStripMenuItem
             // 
             this.المستخدمونToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.user2;
             this.المستخدمونToolStripMenuItem.Name = "المستخدمونToolStripMenuItem";
-            this.المستخدمونToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.المستخدمونToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.المستخدمونToolStripMenuItem.Text = "المستخدمون";
             // 
             // بياناتالاتصالToolStripMenuItem
             // 
             this.بياناتالاتصالToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.network;
             this.بياناتالاتصالToolStripMenuItem.Name = "بياناتالاتصالToolStripMenuItem";
-            this.بياناتالاتصالToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.بياناتالاتصالToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.بياناتالاتصالToolStripMenuItem.Text = "بيانات الاتصال";
             this.بياناتالاتصالToolStripMenuItem.Click += new System.EventHandler(this.بياناتالاتصالToolStripMenuItem_Click);
             // 
@@ -187,14 +164,14 @@
             // 
             this.الصناديقToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.safety_box_open;
             this.الصناديقToolStripMenuItem.Name = "الصناديقToolStripMenuItem";
-            this.الصناديقToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.الصناديقToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.الصناديقToolStripMenuItem.Text = "الصناديق";
             // 
             // البنوكToolStripMenuItem
             // 
             this.البنوكToolStripMenuItem.Image = global::AccountingPR.Properties.Resources.bank;
             this.البنوكToolStripMenuItem.Name = "البنوكToolStripMenuItem";
-            this.البنوكToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.البنوكToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.البنوكToolStripMenuItem.Text = "البنوك";
             // 
             // الحساباتToolStripMenuItem
@@ -290,6 +267,30 @@
             this.مساعدةToolStripMenuItem.Name = "مساعدةToolStripMenuItem";
             this.مساعدةToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.مساعدةToolStripMenuItem.Text = "مساعدة";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblUser});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 525);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1289, 26);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(82, 20);
+            this.toolStripStatusLabel1.Text = " المستخدم: ";
+            // 
+            // lblUser
+            // 
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(0, 20);
+            this.lblUser.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
             // frmMain
             // 

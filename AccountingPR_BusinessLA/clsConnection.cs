@@ -10,10 +10,12 @@ namespace AccountingPR_BusinessLA
     public class clsConnection
     {
 
-        public static void SetServerSettings(string Mode, string ServerName, string databaseName, string UserId = "", string Password = "")
-        {
-            clsConnectionData.SetServerSettings(Mode, ServerName, databaseName, UserId, Password);
-        }
 
+        public static clsConnectionData GetConnection()
+
+        {
+            return clsConnectionData.GetInstance();
+
+        }
     }
 }

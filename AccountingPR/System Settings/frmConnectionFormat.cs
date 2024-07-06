@@ -68,7 +68,7 @@ namespace AccountingPR.System_Settings
             Properties.Settings.Default.Password = txtPassword.Text.Trim();
             Properties.Settings.Default.Save();
                 MessageBox.Show("تم الحفظ بنحاح","حفظ",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                Application.r
+               
 
             }
             catch (Exception ex)

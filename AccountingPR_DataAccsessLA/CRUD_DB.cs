@@ -8,17 +8,7 @@ namespace AccountingPR_DataAccsessLA
      public static class CRUD_DB
     {
 
-        static public void SetErrorLoggingEvent(string exMessage, string sourceName = "Accounting")
-        {
-
-            if (!EventLog.SourceExists(sourceName))
-            {
-                EventLog.CreateEventSource(sourceName, "Application");
-
-            }
-
-
-            EventLog.WriteEntry(sourceName, exMessage, EventLogEntryType.Error);
+       
 
         }
         //public static bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
@@ -90,4 +80,4 @@ namespace AccountingPR_DataAccsessLA
         //    return dt;
         //}
     }
-}
+

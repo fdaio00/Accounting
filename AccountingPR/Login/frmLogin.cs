@@ -24,7 +24,7 @@ namespace AccountingPR.Login
             string DB = Properties.Settings.Default.DB;
             string UserID = Properties.Settings.Default.UserID;
             string Password = Properties.Settings.Default.Password;
-            clsConnection.SetServerSettings(Mode, Server, DB, UserID, Password);
+            clsSettings.SetServerSettings(Mode, Server, DB, UserID, Password);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

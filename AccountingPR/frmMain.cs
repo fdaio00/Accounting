@@ -1,4 +1,5 @@
-﻿using AccountingPR.System_Settings;
+﻿using AccountingPR.Company;
+using AccountingPR.System_Settings;
 using AccountingPR_BusinessLA;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,12 @@ namespace AccountingPR
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void بياناتالشركةToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCompanyInfo frm = new frmCompanyInfo();
+            frm.ShowDialog();
         }
     }
 }
