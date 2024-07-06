@@ -133,6 +133,10 @@
       <Project>{e77c3b54-6613-4d2c-803f-777feb9b98ee}</Project>
       <Name>Accounting_BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AccountingPR_DataAccsessLA\Accounting_DAL.csproj">
+      <Project>{143dc79c-cae0-4721-9fc5-e005342c5c6f}</Project>
+      <Name>Accounting_DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Accounts\" />

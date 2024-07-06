@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsCashData.cs" />
+    <Compile Include="clsCompanyData.cs" />
     <Compile Include="clsAccountDB.cs" />
     <Compile Include="CRUD_DB.cs" />
-    <Compile Include="clsConnectionData.cs" />
+    <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="IBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

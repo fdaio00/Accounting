@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace AccountingPR_BusinessLA
 {
-    public class clsConnection
+    public class clsConnection 
     {
 
 
-        public static clsConnectionData GetConnection()
+        //public static clsDataAccessSettings GetConnection()
 
-        {
-            return clsConnectionData.GetInstance();
+        //{
+        //    //return clsDataAccessSettings.GetInstance();
 
-        }
+        //}
     }
 }

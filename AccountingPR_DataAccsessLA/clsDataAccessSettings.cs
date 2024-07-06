@@ -4,10 +4,10 @@ using System.Data;
 using System;
 using System.Diagnostics;
 
-public class clsConnectionData
+public class clsDataAccessSettings
 {
     // Singleton instance
-    private static clsConnectionData _instance;
+
     private static readonly object _lock = new object();
 
     private static string _Mode;
@@ -16,28 +16,28 @@ public class clsConnectionData
     private static string _DB;
     private static string _UserID;
 
-    public string ConnectionString { get; private set; }
+    public static string ConnectionString { get; private set; }
 
     // Private constructor to prevent direct instantiation
-    private clsConnectionData()
-    {
-        SetConnectionString();
-    }
+    //private clsDataAccessSettings()
+    //{
+    //    SetConnectionString();
+    //}
 
-    public static clsConnectionData GetInstance()
-    {
-        if (_instance == null)
-        {
-            lock (_lock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new clsConnectionData();
-                }
-            }
-        }
-        return _instance;
-    }
+    ////public static clsDataAccessSettings GetInstance()
+    //{
+    //    if (_instance == null)
+    //    {
+    //        lock (_lock)
+    //        {
+    //            if (_instance == null)
+    //            {
+    //                _instance = new clsDataAccessSettings();
+    //            }
+    //        }
+    //    }
+    //    return _instance;
+    //}
     static public void SetErrorLoggingEvent(string exMessage, string sourceName = "Accounting")
     {
 
@@ -68,37 +68,37 @@ public class clsConnectionData
         }
     }
 
-    public bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
-    {
-        bool success = false;
+    //public bool ExecuteCommand(string storedProcedureName, SqlParameter[] parameters)
+    //{
+    //    bool success = false;
 
-        using (SqlConnection connection = new SqlConnection(ConnectionString))
-        {
-            using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
+    //    using (SqlConnection connection = new SqlConnection(ConnectionString))
+    //    {
+    //        using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+    //        {
+    //            command.CommandType = CommandType.StoredProcedure;
 
-                if (parameters != null)
-                {
-                    command.Parameters.AddRange(parameters);
-                }
+    //            if (parameters != null)
+    //            {
+    //                command.Parameters.AddRange(parameters);
+    //            }
 
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    success = true;
-                }
-                catch (Exception ex)
-                {
-                   SetErrorLoggingEvent(ex.Message);
-                    success = false;
-                }
-            }
-        }
+    //            try
+    //            {
+    //                connection.Open();
+    //                command.ExecuteNonQuery();
+    //                success = true;
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //               SetErrorLoggingEvent(ex.Message);
+    //                success = false;
+    //            }
+    //        }
+    //    }
 
-        return success;
-    }
+    //    return success;
+    //}
 
     public static void SetServerSettings(string Mode, string ServerName, string databaseName, string UserId = "", string Password = "")
     {
@@ -108,11 +108,11 @@ public class clsConnectionData
         _UserID = UserId;
         _Password = Password;
 
-        // Ensure the singleton instance updates its connection string
-        if (_instance != null)
-        {
-            _instance.SetConnectionString();
-        }
+        //// Ensure the singleton instance updates its connection string
+        //if (_instance != null)
+        //{
+        //    _instance.SetConnectionString();
+        //}
     }
 
     public DataTable GetData(string storedProcedureName, SqlParameter[] parameters)

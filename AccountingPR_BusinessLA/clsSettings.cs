@@ -11,12 +11,12 @@ namespace AccountingPR_BusinessLA
 
         public static void SetServerSettings(string Mode, string ServerName, string databaseName, string UserId = "", string Password = "")
         {
-            clsConnectionData.SetServerSettings(Mode, ServerName, databaseName, UserId, Password);
+            clsDataAccessSettings.SetServerSettings(Mode, ServerName, databaseName, UserId, Password);
         }
 
         public static void SetErrorLoggerEvenr(string Message)
         {
-             clsConnectionData.SetErrorLoggingEvent(Message);
+             clsDataAccessSettings.SetErrorLoggingEvent(Message);
         }
 
     }
