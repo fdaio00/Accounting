@@ -1,6 +1,9 @@
-﻿using System;
+﻿using AccountingPR.Global;
+using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -43,6 +46,8 @@ namespace AccountingPR.Company
 
                     MessageBox.Show("تم الحذف بنجاح", "تم الحذف !", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     _GetAllCompanies();
+                    dgvListCompines.ClearSelection();
+                    _ClearTextBoxes  ();
         
                 }
                 else
@@ -83,15 +88,6 @@ namespace AccountingPR.Company
             btnBrowse.Enabled = false;
         }
 
-        private static Bitmap ByteToImage(byte[] logo)
-        {
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = logo;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-            return bm;
-        }
 
         void _LoadCompanyInfo()
         {
@@ -113,7 +109,7 @@ namespace AccountingPR.Company
 
             if (_Company.Logo != null)
             {
-                pbCompImage.Image = ByteToImage(_Company.Logo);
+                pbCompImage.Image = clsUtil.ByteToImage(_Company.Logo);
             }
             else
             {
@@ -146,7 +142,7 @@ namespace AccountingPR.Company
 
             if (_Company.Logo != null)
             {
-                pbCompImage.Image = ByteToImage(_Company.Logo);
+                pbCompImage.Image = clsUtil.ByteToImage(_Company.Logo);
             }
             else
             {
@@ -173,7 +169,10 @@ namespace AccountingPR.Company
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
+            _Company = new clsCompany();
+            _EnbleDesableTextBoxes(true);
             dgvListCompines.ClearSelection();
+            this.AcceptButton = btnSave; 
             _ClearTextBoxes(); 
             txtCompNameAr.Focus();
             btnSave.Enabled = true;
@@ -197,17 +196,14 @@ namespace AccountingPR.Company
             _Company.Email = string.IsNullOrEmpty(txtEmail.Text) ? "" : txtEmail.Text;
             _Company.AddressAr = txtAddressAr.Text;
             _Company.AddressEn = string.IsNullOrEmpty(txtAddressEN.Text) ? "" : txtAddressEN.Text;
-            byte[] imageBytes = null;
 
             // Check if there is an image in the PictureBox
             if (pbCompImage.Image != null)
             {
-                MemoryStream ms = new MemoryStream();
-                pbCompImage.Image.Save(ms, pbCompImage.Image.RawFormat);
-                imageBytes = ms.ToArray();
+                _Company.Logo = clsUtil.ImageToByte(pbCompImage);
+               
             }
 
-            _Company.Logo = imageBytes;
             _Company.CompanyNameAr = txtCompNameAr.Text;
             _Company.CompanyNameEn = string.IsNullOrEmpty(txtCompNameEn.Text) ? "" : txtCompNameEn.Text;
             _Company.Fax = string.IsNullOrEmpty(txtFax.Text) ? "" : txtFax.Text;
@@ -215,7 +211,7 @@ namespace AccountingPR.Company
 
             if (await _Company.SaveAsync())
             {
-                MessageBox.Show("تم لحفظ بنجاح");
+                ToastHelper.ShowToast("تم الحفظ بنجاح");
                 _CompanyID = _Company.CompanyID;
                 _Mode = enMode.Update;
                 btnSave.Enabled = false;
@@ -244,7 +240,17 @@ namespace AccountingPR.Company
             if (dgvListCompines.Rows.Count > 0)
             {
                 dgvListCompines.Columns[0].Visible = false; 
+                dgvListCompines.Columns[1].HeaderText = "الاسم(ع)"; 
+                dgvListCompines.Columns[2].HeaderText = "الاسم(ل)"; 
+                dgvListCompines.Columns[3].HeaderText = "العنوان(ع)"; 
+                dgvListCompines.Columns[4].HeaderText = "العنوان(ل)"; 
+                dgvListCompines.Columns[5].HeaderText = "الهاتف"; 
+                dgvListCompines.Columns[6].HeaderText = "فاكس"; 
+                dgvListCompines.Columns[7].HeaderText = "البريد الالكتروني"; 
+                dgvListCompines.Columns[8].HeaderText = "الموقع الالكتروني"; 
                 dgvListCompines.Columns[9].Visible = false; 
+                dgvListCompines.Columns[8].Visible = false; 
+                dgvListCompines.Columns[6].Visible = false; 
 
             }
         }
@@ -268,7 +274,7 @@ namespace AccountingPR.Company
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-            openFileDialog1.Title = "اختر صورة...";
+            openFileDialog1.Title = "اختر صورة حلوة...";
             openFileDialog1.Multiselect = false;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -276,7 +282,7 @@ namespace AccountingPR.Company
                 if (openFileDialog1.FileName != "")
                 {
                     pbCompImage.ImageLocation = openFileDialog1.FileName;
-                    btnDelete.Enabled = true;
+                    btnRemovePc.Enabled = true;
                 }
             }
            
@@ -288,6 +294,7 @@ namespace AccountingPR.Company
             int CompanyID = Convert.ToInt32(dgvListCompines.CurrentRow.Cells[0].Value);
             if(CompanyID > 0)
             {
+                this.AcceptButton = btnEdit;
                 _LoadCompanyInfo(CompanyID);
             }
         }
@@ -311,6 +318,33 @@ namespace AccountingPR.Company
         {
             TextBox temp = (TextBox)sender; 
             temp.BackColor = Color.LightYellow;
+        }
+
+        private void TextBoxLeave(object sender, EventArgs e)
+        {
+            TextBox temp = (TextBox)sender;
+            temp.BackColor = Color.White;
+        }
+
+        private void txtCompNameEn_Enter(object sender, EventArgs e)
+        {
+            TextBox temp = (TextBox)sender;
+            temp.BackColor = Color.LightYellow;
+
+            Application.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("en-us"));
+        }
+
+        private void txtCompNameAr_Enter(object sender, EventArgs e)
+        {
+            TextBox temp = (TextBox)sender;
+            temp.BackColor = Color.LightYellow;
+
+            Application.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ar-ye"));
+        }
+
+        private void txtCompNameEn_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -62,13 +62,14 @@
             // 
             this.txtCompNameAr.Enabled = false;
             this.txtCompNameAr.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCompNameAr.Location = new System.Drawing.Point(134, 20);
+            this.txtCompNameAr.Location = new System.Drawing.Point(151, 20);
             this.txtCompNameAr.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompNameAr.Name = "txtCompNameAr";
-            this.txtCompNameAr.Size = new System.Drawing.Size(347, 24);
+            this.txtCompNameAr.Size = new System.Drawing.Size(364, 28);
             this.txtCompNameAr.TabIndex = 3;
             this.txtCompNameAr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCompNameAr.Enter += new System.EventHandler(this.txtBoxEnter);
+            this.txtCompNameAr.Enter += new System.EventHandler(this.txtCompNameAr_Enter);
+            this.txtCompNameAr.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label2
             // 
@@ -77,7 +78,7 @@
             this.label2.Location = new System.Drawing.Point(17, 27);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 17);
+            this.label2.Size = new System.Drawing.Size(121, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "الاسم بالعربي: ";
             // 
@@ -85,12 +86,14 @@
             // 
             this.txtAddressAr.Enabled = false;
             this.txtAddressAr.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddressAr.Location = new System.Drawing.Point(134, 103);
+            this.txtAddressAr.Location = new System.Drawing.Point(151, 103);
             this.txtAddressAr.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddressAr.Name = "txtAddressAr";
-            this.txtAddressAr.Size = new System.Drawing.Size(347, 24);
+            this.txtAddressAr.Size = new System.Drawing.Size(364, 28);
             this.txtAddressAr.TabIndex = 7;
             this.txtAddressAr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAddressAr.Enter += new System.EventHandler(this.txtCompNameAr_Enter);
+            this.txtAddressAr.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label3
             // 
@@ -99,7 +102,7 @@
             this.label3.Location = new System.Drawing.Point(18, 110);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 17);
+            this.label3.Size = new System.Drawing.Size(106, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "العنوان عربي:";
             // 
@@ -107,12 +110,15 @@
             // 
             this.txtCompNameEn.Enabled = false;
             this.txtCompNameEn.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCompNameEn.Location = new System.Drawing.Point(134, 62);
+            this.txtCompNameEn.Location = new System.Drawing.Point(151, 62);
             this.txtCompNameEn.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompNameEn.Name = "txtCompNameEn";
-            this.txtCompNameEn.Size = new System.Drawing.Size(347, 24);
+            this.txtCompNameEn.Size = new System.Drawing.Size(364, 28);
             this.txtCompNameEn.TabIndex = 5;
             this.txtCompNameEn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCompNameEn.TextChanged += new System.EventHandler(this.txtCompNameEn_TextChanged);
+            this.txtCompNameEn.Enter += new System.EventHandler(this.txtCompNameEn_Enter);
+            this.txtCompNameEn.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label4
             // 
@@ -121,7 +127,7 @@
             this.label4.Location = new System.Drawing.Point(17, 69);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 17);
+            this.label4.Size = new System.Drawing.Size(108, 21);
             this.label4.TabIndex = 4;
             this.label4.Text = "الاسم لاتيني:";
             // 
@@ -129,12 +135,14 @@
             // 
             this.txtEmail.Enabled = false;
             this.txtEmail.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtEmail.Location = new System.Drawing.Point(134, 266);
+            this.txtEmail.Location = new System.Drawing.Point(151, 266);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(347, 24);
+            this.txtEmail.Size = new System.Drawing.Size(364, 28);
             this.txtEmail.TabIndex = 15;
             this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEmail.Enter += new System.EventHandler(this.txtCompNameEn_Enter);
+            this.txtEmail.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label5
             // 
@@ -143,7 +151,7 @@
             this.label5.Location = new System.Drawing.Point(12, 273);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 17);
+            this.label5.Size = new System.Drawing.Size(107, 21);
             this.label5.TabIndex = 14;
             this.label5.Text = "بريد الكتروني:";
             // 
@@ -151,12 +159,14 @@
             // 
             this.txtFax.Enabled = false;
             this.txtFax.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtFax.Location = new System.Drawing.Point(134, 227);
+            this.txtFax.Location = new System.Drawing.Point(151, 227);
             this.txtFax.Margin = new System.Windows.Forms.Padding(2);
             this.txtFax.Name = "txtFax";
-            this.txtFax.Size = new System.Drawing.Size(347, 24);
+            this.txtFax.Size = new System.Drawing.Size(364, 28);
             this.txtFax.TabIndex = 13;
             this.txtFax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFax.Enter += new System.EventHandler(this.txtCompNameEn_Enter);
+            this.txtFax.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label6
             // 
@@ -165,7 +175,7 @@
             this.label6.Location = new System.Drawing.Point(18, 234);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 17);
+            this.label6.Size = new System.Drawing.Size(58, 21);
             this.label6.TabIndex = 12;
             this.label6.Text = "فاكس:";
             // 
@@ -173,12 +183,14 @@
             // 
             this.txtPhone.Enabled = false;
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhone.Location = new System.Drawing.Point(134, 186);
+            this.txtPhone.Location = new System.Drawing.Point(151, 186);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(347, 24);
+            this.txtPhone.Size = new System.Drawing.Size(364, 28);
             this.txtPhone.TabIndex = 11;
             this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPhone.Enter += new System.EventHandler(this.txtCompNameEn_Enter);
+            this.txtPhone.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label7
             // 
@@ -187,7 +199,7 @@
             this.label7.Location = new System.Drawing.Point(18, 193);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 17);
+            this.label7.Size = new System.Drawing.Size(55, 21);
             this.label7.TabIndex = 10;
             this.label7.Text = "تلفون:";
             // 
@@ -195,12 +207,14 @@
             // 
             this.txtAddressEN.Enabled = false;
             this.txtAddressEN.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddressEN.Location = new System.Drawing.Point(134, 144);
+            this.txtAddressEN.Location = new System.Drawing.Point(151, 144);
             this.txtAddressEN.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddressEN.Name = "txtAddressEN";
-            this.txtAddressEN.Size = new System.Drawing.Size(347, 24);
+            this.txtAddressEN.Size = new System.Drawing.Size(364, 28);
             this.txtAddressEN.TabIndex = 9;
             this.txtAddressEN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAddressEN.Enter += new System.EventHandler(this.txtCompNameEn_Enter);
+            this.txtAddressEN.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label8
             // 
@@ -209,7 +223,7 @@
             this.label8.Location = new System.Drawing.Point(18, 147);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(91, 17);
+            this.label8.Size = new System.Drawing.Size(111, 21);
             this.label8.TabIndex = 8;
             this.label8.Text = "العنوان لاتيني:";
             // 
@@ -217,12 +231,14 @@
             // 
             this.txtWebiste.Enabled = false;
             this.txtWebiste.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtWebiste.Location = new System.Drawing.Point(134, 307);
+            this.txtWebiste.Location = new System.Drawing.Point(151, 307);
             this.txtWebiste.Margin = new System.Windows.Forms.Padding(2);
             this.txtWebiste.Name = "txtWebiste";
-            this.txtWebiste.Size = new System.Drawing.Size(347, 24);
+            this.txtWebiste.Size = new System.Drawing.Size(364, 28);
             this.txtWebiste.TabIndex = 17;
             this.txtWebiste.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtWebiste.Enter += new System.EventHandler(this.txtCompNameEn_Enter);
+            this.txtWebiste.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label9
             // 
@@ -231,7 +247,7 @@
             this.label9.Location = new System.Drawing.Point(6, 314);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 17);
+            this.label9.Size = new System.Drawing.Size(135, 21);
             this.label9.TabIndex = 16;
             this.label9.Text = "الموقع الالكتروني:";
             // 
@@ -239,7 +255,7 @@
             // 
             this.pbCompImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbCompImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbCompImage.Location = new System.Drawing.Point(518, 23);
+            this.pbCompImage.Location = new System.Drawing.Point(559, 20);
             this.pbCompImage.Margin = new System.Windows.Forms.Padding(2);
             this.pbCompImage.Name = "pbCompImage";
             this.pbCompImage.Size = new System.Drawing.Size(233, 223);
@@ -253,6 +269,7 @@
             this.dgvListCompines.AllowUserToAddRows = false;
             this.dgvListCompines.AllowUserToDeleteRows = false;
             this.dgvListCompines.AllowUserToOrderColumns = true;
+            this.dgvListCompines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListCompines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListCompines.Location = new System.Drawing.Point(13, 353);
             this.dgvListCompines.Margin = new System.Windows.Forms.Padding(2);
@@ -260,14 +277,14 @@
             this.dgvListCompines.ReadOnly = true;
             this.dgvListCompines.RowHeadersWidth = 51;
             this.dgvListCompines.RowTemplate.Height = 24;
-            this.dgvListCompines.Size = new System.Drawing.Size(742, 185);
+            this.dgvListCompines.Size = new System.Drawing.Size(779, 185);
             this.dgvListCompines.TabIndex = 19;
             this.dgvListCompines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListCompines_CellClick);
             // 
             // btnNew
             // 
             this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnNew.Location = new System.Drawing.Point(15, 558);
+            this.btnNew.Location = new System.Drawing.Point(49, 558);
             this.btnNew.Margin = new System.Windows.Forms.Padding(2);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(100, 29);
@@ -280,7 +297,7 @@
             // 
             this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnSave.Location = new System.Drawing.Point(151, 558);
+            this.btnSave.Location = new System.Drawing.Point(185, 558);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(86, 29);
@@ -292,7 +309,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnDelete.Location = new System.Drawing.Point(382, 558);
+            this.btnDelete.Location = new System.Drawing.Point(416, 558);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 29);
@@ -305,7 +322,7 @@
             // 
             this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnEdit.Location = new System.Drawing.Point(266, 558);
+            this.btnEdit.Location = new System.Drawing.Point(300, 558);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(86, 29);
@@ -317,7 +334,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnExit.Location = new System.Drawing.Point(631, 558);
+            this.btnExit.Location = new System.Drawing.Point(697, 558);
             this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(86, 29);
@@ -330,7 +347,7 @@
             // 
             this.btnRemovePc.Enabled = false;
             this.btnRemovePc.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnRemovePc.Location = new System.Drawing.Point(656, 261);
+            this.btnRemovePc.Location = new System.Drawing.Point(697, 258);
             this.btnRemovePc.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemovePc.Name = "btnRemovePc";
             this.btnRemovePc.Size = new System.Drawing.Size(86, 29);
@@ -342,7 +359,7 @@
             // btnBrowse
             // 
             this.btnBrowse.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnBrowse.Location = new System.Drawing.Point(544, 261);
+            this.btnBrowse.Location = new System.Drawing.Point(585, 258);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(86, 29);
@@ -357,10 +374,11 @@
             // 
             // frmCompanyInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnNew;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(776, 613);
+            this.ClientSize = new System.Drawing.Size(803, 613);
             this.Controls.Add(this.btnRemovePc);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.btnExit);

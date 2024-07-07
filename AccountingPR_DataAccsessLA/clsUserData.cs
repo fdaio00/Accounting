@@ -31,26 +31,44 @@ public static class clsUserData
         return dt;
     }
 
-    public static async Task<int> AddNewUserAsync(string FullName, string UserName, string Password, string Phone, string Email, byte[] Image)
+    public static async Task<int> AddNewUserAsync(string FullName, string UserName, string Password, string Phone, 
+        string Email, byte[] Image, bool IsActive, bool UserType)
     {
         int userID = -1;
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
-            using (SqlCommand command = new SqlCommand("SP_AddUser", connection))
+            using (SqlCommand command = new SqlCommand("SP_AddNewUser", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                SqlParameter OUTPUT = new SqlParameter("@UserID", SqlDbType.Int)
+                { Direction = ParameterDirection.Output };
+                command.Parameters.Add(OUTPUT);
                 command.Parameters.AddWithValue("@FullName", FullName);
                 command.Parameters.AddWithValue("@UserName", UserName);
                 command.Parameters.AddWithValue("@Password", Password);
                 command.Parameters.AddWithValue("@Phone", (object)Phone ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Email", (object)Email ?? DBNull.Value);
-                command.Parameters.AddWithValue("@Image", (object)Image ?? DBNull.Value);
+                SqlParameter imagepatameter = new SqlParameter("@Image", SqlDbType.Image);
+                if (Image != null)
+                {
+                    imagepatameter.Value = Image;
+                }
+                else
+                {
+                    imagepatameter.Value = DBNull.Value;
+                }
+                command.Parameters.Add(imagepatameter);
+                command.Parameters.AddWithValue("@IsActive", (object)IsActive );
+                command.Parameters.AddWithValue("@UserType", (object)UserType );
+
+
 
                 try
                 {
                     await connection.OpenAsync();
-                    userID = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    await command.ExecuteNonQueryAsync();
+                    userID = Convert.ToInt32(OUTPUT.Value);
                 }
                 catch (Exception ex)
                 {
@@ -66,7 +84,8 @@ public static class clsUserData
         return userID;
     }
 
-    public static async Task<bool> UpdateUserAsync(int UserID, string FullName, string UserName, string Password, string Phone, string Email, byte[] Image)
+    public static async Task<bool> UpdateUserAsync(int UserID, string FullName, string UserName, 
+        string Password, string Phone, string Email, byte[] Image,  bool IsActive , bool UserType)
     {
         bool success = false;
 
@@ -81,7 +100,19 @@ public static class clsUserData
                 command.Parameters.AddWithValue("@Password", Password);
                 command.Parameters.AddWithValue("@Phone", (object)Phone ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Email", (object)Email ?? DBNull.Value);
-                command.Parameters.AddWithValue("@Image", (object)Image ?? DBNull.Value);
+                SqlParameter imagepatameter = new SqlParameter("@Image", SqlDbType.Image);
+                if (Image != null)
+                {
+                    imagepatameter.Value = Image;
+                }
+                else
+                {
+                    imagepatameter.Value = DBNull.Value;
+                }
+                command.Parameters.Add(imagepatameter);
+                command.Parameters.AddWithValue("@IsActive", (object)IsActive);
+                command.Parameters.AddWithValue("@UserType", (object)UserType);
+
 
                 try
                 {
@@ -126,7 +157,9 @@ public static class clsUserData
         return success;
     }
 
-    public static bool FindUserByID(int UserID, ref string FullNameRef, ref string UserNameRef, ref string PasswordRef, ref string PhoneRef, ref string EmailRef, ref byte[] ImageRef)
+    public static bool FindUserByID(int UserID, ref string FullNameRef,
+        ref string UserNameRef, ref string PasswordRef, ref string PhoneRef, ref string EmailRef, ref byte[] ImageRef, ref bool IsActive , 
+        ref bool UserType)
     {
         bool isFound = false;
 
@@ -158,6 +191,9 @@ public static class clsUserData
                         {
                             ImageRef = null;
                         }
+                        IsActive = reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(reader["IsActive"]) : false;
+                        UserType = reader["UserType"] != DBNull.Value ? Convert.ToBoolean(reader["UserType"]) : false;
+
                     }
                     reader.Close();
                 }
@@ -171,7 +207,10 @@ public static class clsUserData
         return isFound;
     }
 
-    public static bool FindByUserNameAndPassword(ref int UserID, ref string FullName,  string UserName,  string Password, ref string PhoneRef, ref string EmailRef, ref byte[] ImageRef)
+    public static bool FindByUserNameAndPassword(ref int UserID, ref string FullName,
+        string UserName, string Password, ref string PhoneRef,
+        ref string EmailRef, ref byte[] ImageRef, ref bool IsActive,
+        ref bool UserType)
     {
         bool isFound = false;
 
@@ -203,6 +242,8 @@ public static class clsUserData
                         {
                             ImageRef = null;
                         }
+                        IsActive = reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(reader["IsActive"]) : false;
+                        UserType = reader["UserType"] != DBNull.Value ? Convert.ToBoolean(reader["UserType"]) : false;
                     }
                     reader.Close();
                 }
@@ -215,6 +256,69 @@ public static class clsUserData
 
         return isFound;
     }
+
+    public static bool CheckUserNameExists(string UserName)
+    {
+        bool IsFound = false;
+        using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SP_CheckUserNameExists", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@UserName", UserName);
+
+                // Add a parameter to capture the return value
+                SqlParameter returnValue = new SqlParameter();
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Parameters.Add(returnValue);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    int result = (int)returnValue.Value;
+                    IsFound = (result > 0);
+
+                }
+                catch (Exception ex)
+                {
+                    clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                }
+            }
+        }
+
+        return IsFound;
+    } 
+    public static int GetUserMaxCount()
+    {
+        int? result = 0; 
+        using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SP_GetUserMaxCount", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+               
+
+            
+
+                try
+                {
+                    connection.Open();
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                   
+
+                }
+                catch (Exception ex)
+                {
+                    clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                }
+            }
+        }
+
+        return result??-1;
+    }
+
 }
+
 
 

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsCurrency.cs" />
+    <Compile Include="clsReport.cs" />
     <Compile Include="clsBondHeader.cs" />
     <Compile Include="clsBondDetail.cs" />
     <Compile Include="clsBank.cs" />

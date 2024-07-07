@@ -58,7 +58,7 @@ namespace AccountingPR.Global
             catch (Exception ex)
             {
 
-                clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                clsSettings.SetErrorLoggerEvenr(ex.Message);
                 throw;
             }
 

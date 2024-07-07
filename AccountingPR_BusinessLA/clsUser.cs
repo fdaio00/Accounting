@@ -14,6 +14,8 @@ public class clsUser
     public string Phone { get; set; }
     public string Email { get; set; }
     public byte[] Image { get; set; }
+    public bool IsActive { get; set; }
+    public bool UserType { get; set; }
 
     public clsUser()
     {
@@ -27,7 +29,7 @@ public class clsUser
         _Mode = enMode.AddNew;
     }
 
-    public clsUser(int userID, string fullName, string userName, string password, string phone, string email, byte[] image)
+    public clsUser(int userID, string fullName, string userName, string password, string phone, string email, byte[] image, bool isActive, bool userType)
     {
         this.UserID = userID;
         this.FullName = fullName;
@@ -37,17 +39,21 @@ public class clsUser
         this.Email = email;
         this.Image = image;
         _Mode = enMode.Update;
+        IsActive = isActive;
+        UserType = userType;
     }
 
     private async Task<bool> _AddNewUserAsync()
     {
-        this.UserID = await clsUserData.AddNewUserAsync(this.FullName, this.UserName, this.Password, this.Phone, this.Email, this.Image);
+        this.UserID = await clsUserData.AddNewUserAsync(this.FullName, this.UserName, this.Password, 
+            this.Phone, this.Email, this.Image, this.IsActive, this.UserType);
         return (this.UserID > 0);
     }
 
     private async Task<bool> _UpdateUserAsync()
     {
-        return await clsUserData.UpdateUserAsync(this.UserID, this.FullName, this.UserName, this.Password, this.Phone, this.Email, this.Image);
+        return await clsUserData.UpdateUserAsync(this.UserID, this.FullName, this.UserName, this.Password, this.Phone, this.Email, this.Image
+            , this.IsActive, this.UserType);
     }
 
     public async Task<bool> SaveAsync()
@@ -69,9 +75,9 @@ public class clsUser
         }
     }
 
-    public async Task<bool> DeleteAsync()
+    public static async Task<bool> DeleteAsync(int UserID)
     {
-        return await clsUserData.DeleteUserAsync(this.UserID);
+        return await clsUserData.DeleteUserAsync(UserID);
     }
 
     public static async Task<DataTable> GetAllUsersAsync()
@@ -87,12 +93,15 @@ public class clsUser
         string Phone = null;
         string Email = null;
         byte[] Image = null;
+        bool IsActive = false;
+        bool UserType = false;
 
-        bool isUserFound = clsUserData.FindUserByID(UserID, ref FullName, ref UserName, ref Password, ref Phone, ref Email, ref Image);
+        bool isUserFound = clsUserData.FindUserByID(UserID, ref FullName, ref UserName, ref Password, ref Phone, ref Email, ref Image
+            , ref IsActive, ref UserType);
 
         if (isUserFound)
         {
-            return new clsUser(UserID, FullName, UserName, Password, Phone, Email, Image);
+            return new clsUser(UserID, FullName, UserName, Password, Phone, Email, Image, IsActive, UserType);
         }
         else
         {
@@ -107,16 +116,30 @@ public class clsUser
         string Phone = null;
         string Email = null;
         byte[] Image = null;
+        bool IsActive = false;
+        bool UserType = false; 
 
-        bool isUserFound = clsUserData.FindByUserNameAndPassword(  ref UserID, ref FullName,  UserName,  Password, ref Phone, ref Email, ref Image);
+        bool isUserFound = clsUserData.FindByUserNameAndPassword(  ref UserID, ref FullName,  UserName,  Password, ref Phone, 
+            ref Email, ref Image, ref IsActive, ref UserType);
 
         if (isUserFound)
         {
-            return new clsUser(UserID, FullName, UserName, Password, Phone, Email, Image);
+            return new clsUser(UserID, FullName, UserName, Password, Phone, Email, Image,IsActive,UserType);
         }
         else
         {
             return null;
         }
     }
+
+    public static bool CheckUserNameExists(string  UserName)
+    {
+        return clsUserData.CheckUserNameExists(UserName);
+    }
+
+    public static int GetUserMaxCount()
+    {
+        return clsUserData.GetUserMaxCount();
+    }
+
 }

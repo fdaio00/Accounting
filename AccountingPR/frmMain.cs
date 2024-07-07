@@ -1,5 +1,7 @@
-﻿using AccountingPR.Company;
+﻿using AccountingPR.Accounts;
+using AccountingPR.Company;
 using AccountingPR.System_Settings;
+using AccountingPR.Users;
 using AccountingPR_BusinessLA;
 using System;
 using System.Collections.Generic;
@@ -46,6 +48,18 @@ namespace AccountingPR
         {
             frmCompanyInfo frm = new frmCompanyInfo();
             frm.ShowDialog();
+        }
+
+        private void المستخدمونToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListUsers frm = new frmListUsers();
+            frm.ShowDialog(); 
+        }
+
+        private void دليلالحساباتToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListAccounts frm = new frmListAccounts();
+            frm.ShowDialog(); 
         }
     }
 }
