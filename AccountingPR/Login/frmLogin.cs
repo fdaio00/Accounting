@@ -29,41 +29,34 @@ namespace AccountingPR.Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            #region Code to save credintial in Registery
-            if (chbRememberMe.Checked)
+
+
+
+            clsUser LoggedUser = clsUser.FindByUserNameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+            if (LoggedUser != null)
             {
-                if (clsGlobal.SaveCredintail(txtUserName.Text.Trim(), txtPassword.Text.Trim()))
+                if (chbRememberMe.Checked)
                 {
-                    //MessageBox.Show("Saved");
-                };
-            }
-            else
-            {
-                clsGlobal.SaveCredintail("", "");
-            }
-            #endregion
-
-            DataTable dtLogin = clsLogin.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim());
-            try
-            {
-
-
-                if (dtLogin.Rows.Count > 0 && dtLogin != null)
-                {
-                    frmMain frm = new frmMain();
-                    this.Hide();
-                    frm.Show();
+                    if (clsGlobal.SaveCredintail(txtUserName.Text.Trim(), txtPassword.Text.Trim()))
+                    {
+                        //MessageBox.Show("Saved");
+                    };
                 }
                 else
                 {
-                    MessageBox.Show("اسم المستخدم او كلمة المرور خاطئة ", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    clsGlobal.SaveCredintail("", "");
                 }
+
+                frmMain frm = new frmMain();
+                this.Hide();
+                frm.Show();
             }
-            catch (Exception ex)
+
+            else
             {
-                clsGlobal.SetErrorLoggingEvent(ex.Message);
-                return; 
+                MessageBox.Show("اسم المستخدم او كلمة المرور خاطئة ", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
         }
 
         private void frmLogin_Load(object sender, EventArgs e)

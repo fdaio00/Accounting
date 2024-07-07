@@ -83,10 +83,10 @@ public class clsCompany
        
     }
 
-    public async Task<bool> DeleteAsync()
+    public static async Task<bool> DeleteAsync(int CompanyID)
     {
     
-            return await clsCompanyData.DeleteCompanyAsync(this.CompanyID);
+            return await clsCompanyData.DeleteCompanyAsync(CompanyID);
         
        
     }

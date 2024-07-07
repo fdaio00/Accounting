@@ -41,29 +41,32 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label1.Location = new System.Drawing.Point(13, 29);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label1.Location = new System.Drawing.Point(10, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 26);
+            this.label1.Size = new System.Drawing.Size(71, 11);
             this.label1.TabIndex = 0;
             this.label1.Text = "اسم المستخدم:";
             // 
             // txtUserName
             // 
             this.txtUserName.BackColor = System.Drawing.SystemColors.Window;
-            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtUserName.Location = new System.Drawing.Point(137, 29);
+            this.txtUserName.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtUserName.Location = new System.Drawing.Point(112, 21);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(278, 32);
+            this.txtUserName.Size = new System.Drawing.Size(157, 24);
             this.txtUserName.TabIndex = 0;
             // 
             // btnLogin
             // 
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnLogin.Location = new System.Drawing.Point(39, 188);
+            this.btnLogin.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnLogin.Location = new System.Drawing.Point(29, 153);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(178, 40);
+            this.btnLogin.Size = new System.Drawing.Size(134, 32);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "دخول";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -72,29 +75,32 @@
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.SystemColors.Window;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtPassword.Location = new System.Drawing.Point(137, 80);
+            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPassword.Location = new System.Drawing.Point(112, 62);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(278, 32);
+            this.txtPassword.Size = new System.Drawing.Size(157, 24);
             this.txtPassword.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label2.Location = new System.Drawing.Point(13, 80);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label2.Location = new System.Drawing.Point(10, 65);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 26);
+            this.label2.Size = new System.Drawing.Size(53, 11);
             this.label2.TabIndex = 3;
             this.label2.Text = "كلمة المرور:";
             // 
             // chbRememberMe
             // 
             this.chbRememberMe.AutoSize = true;
-            this.chbRememberMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.chbRememberMe.Location = new System.Drawing.Point(150, 127);
+            this.chbRememberMe.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.chbRememberMe.Location = new System.Drawing.Point(112, 103);
+            this.chbRememberMe.Margin = new System.Windows.Forms.Padding(2);
             this.chbRememberMe.Name = "chbRememberMe";
-            this.chbRememberMe.Size = new System.Drawing.Size(84, 30);
+            this.chbRememberMe.Size = new System.Drawing.Size(70, 21);
             this.chbRememberMe.TabIndex = 3;
             this.chbRememberMe.Text = "تذكرني";
             this.chbRememberMe.UseVisualStyleBackColor = true;
@@ -103,10 +109,11 @@
             // 
             this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnCancle.Location = new System.Drawing.Point(244, 188);
+            this.btnCancle.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnCancle.Location = new System.Drawing.Point(183, 153);
+            this.btnCancle.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancle.Name = "btnCancle";
-            this.btnCancle.Size = new System.Drawing.Size(171, 40);
+            this.btnCancle.Size = new System.Drawing.Size(128, 32);
             this.btnCancle.TabIndex = 4;
             this.btnCancle.Text = "الغاء";
             this.btnCancle.UseVisualStyleBackColor = true;
@@ -115,9 +122,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(15, 247);
+            this.linkLabel1.Location = new System.Drawing.Point(11, 201);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(82, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(83, 13);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "اعدادات السيرفر";
@@ -126,11 +134,11 @@
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(449, 284);
+            this.ClientSize = new System.Drawing.Size(337, 231);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.chbRememberMe);
@@ -139,6 +147,8 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";

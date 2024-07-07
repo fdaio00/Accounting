@@ -49,7 +49,7 @@ public class clsDataAccessSettings
     EventLog.WriteEntry(sourceName, exMessage, EventLogEntryType.Error);
     }
 
-        private void SetConnectionString()
+   private static void SetConnectionString()
     {
         string Mode = _Mode;
         switch (Mode)
@@ -108,11 +108,7 @@ public class clsDataAccessSettings
         _UserID = UserId;
         _Password = Password;
 
-        //// Ensure the singleton instance updates its connection string
-        //if (_instance != null)
-        //{
-        //    _instance.SetConnectionString();
-        //}
+        SetConnectionString();
     }
 
     public DataTable GetData(string storedProcedureName, SqlParameter[] parameters)

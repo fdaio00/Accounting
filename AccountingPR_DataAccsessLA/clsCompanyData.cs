@@ -43,6 +43,11 @@ public static class clsCompanyData
             using (SqlCommand command = new SqlCommand("SP_AddCompany", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                SqlParameter CompnayIDOutPut = new SqlParameter("@CompanyID", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                command.Parameters.Add(CompnayIDOutPut);
                 command.Parameters.AddWithValue("@CompanyNameAr", CompanyNameAr);
                 command.Parameters.AddWithValue("@CompanyNameEn", (object)CompanyNameEn ?? DBNull.Value);
                 command.Parameters.AddWithValue("@AddressAr", AddressAr);
@@ -51,22 +56,32 @@ public static class clsCompanyData
                 command.Parameters.AddWithValue("@Fax", (object)Fax ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Email", (object)Email ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Website", (object)Website ?? DBNull.Value);
-                command.Parameters.AddWithValue("@Logo", (object)Logo ?? DBNull.Value);
+                SqlParameter imageParameter = new SqlParameter("@Logo", SqlDbType.Image);
+                if(Logo!=null)
+                {
+                imageParameter.Value = Logo;
+
+                }
+                else
+                {
+                    imageParameter.Value = DBNull.Value;
+
+                }
+                command.Parameters.Add(imageParameter);
                 // Handle Logo parameter if needed
 
                 try
                 {
                     await connection.OpenAsync();
-                    companyID = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    await command.ExecuteScalarAsync();
+                    if(CompnayIDOutPut!=null)
+                    companyID = Convert.ToInt32(CompnayIDOutPut.Value);
                 }
                 catch (Exception ex)
                 {
                     clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
                 }
-                finally
-                {
-                    connection.Close();
-                }
+               
             }
         }
 
@@ -92,8 +107,18 @@ public static class clsCompanyData
                 command.Parameters.AddWithValue("@Fax", (object)Fax ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Email", (object)Email ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Website", (object)Website ?? DBNull.Value);
-                command.Parameters.AddWithValue("@Logo", (object)Logo ?? DBNull.Value);
-                // Handle Logo parameter if needed
+                SqlParameter imageParameter = new SqlParameter("@Logo", SqlDbType.Image);
+                if (Logo != null)
+                {
+                    imageParameter.Value = Logo;
+
+                }
+                else
+                {
+                    imageParameter.Value = DBNull.Value;
+
+                }
+                command.Parameters.Add(imageParameter);
 
                 try
                 {

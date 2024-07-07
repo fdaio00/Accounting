@@ -41,9 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsBondHeadersData.cs" />
+    <Compile Include="clsBondDetailsData.cs" />
+    <Compile Include="clsBankData.cs" />
+    <Compile Include="clsUserData.cs" />
+    <Compile Include="clsAccountTypeData.cs" />
+    <Compile Include="clsAccountData.cs" />
     <Compile Include="clsCashData.cs" />
     <Compile Include="clsCompanyData.cs" />
-    <Compile Include="clsAccountDB.cs" />
     <Compile Include="CRUD_DB.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="IBase.cs" />
