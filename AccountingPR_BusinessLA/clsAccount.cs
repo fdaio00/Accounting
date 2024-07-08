@@ -11,8 +11,13 @@ public class clsAccount
     public int AccountParentNo { get; set; }
     public string AccountNameAr { get; set; }
     public string AccountNameEn { get; set; }
-    public int AccountType { get; set; }
-    public int AccountReport { get; set; }
+    
+    public int AccountTypeID { get; set; }
+  public  clsAccountType AccountType { set; get; }
+    public int AccountReportID { get; set; }
+
+    public clsReport AccoutReport { get; set; } 
+
     public int AccountLevel { get; set; }
     public decimal AccountDebit { get; set; }
     public decimal AccountCredit { get; set; }
@@ -24,8 +29,8 @@ public class clsAccount
         this.AccountParentNo = 0;
         this.AccountNameAr = "";
         this.AccountNameEn = null;
-        this.AccountType = 0;
-        this.AccountReport = 0;
+        this.AccountTypeID = 0;
+        this.AccountReportID = 0;
         this.AccountLevel = 0;
         this.AccountDebit = 0;
         this.AccountCredit = 0;
@@ -33,13 +38,13 @@ public class clsAccount
         _Mode = enMode.AddNew;
     }
 
-    public clsAccount(
+    public  clsAccount(
         int accountID,
         int accountParentNo,
         string accountNameAr,
         string accountNameEn,
-        int accountType,
-        int accountReport,
+        int AccountTypeID,
+        int AccountReportID,
         int accountLevel,
         decimal accountDebit,
         decimal accountCredit,
@@ -49,8 +54,10 @@ public class clsAccount
         this.AccountParentNo = accountParentNo;
         this.AccountNameAr = accountNameAr;
         this.AccountNameEn = accountNameEn;
-        this.AccountType = accountType;
-        this.AccountReport = accountReport;
+        this.AccountTypeID = AccountTypeID;
+        this.AccountType =  clsAccountType.GetAccountTypeIDByID(this.AccountTypeID);
+        this.AccountReportID = AccountReportID;
+        this.AccoutReport = clsReport.GetReportByID(this.AccountReportID);
         this.AccountLevel = accountLevel;
         this.AccountDebit = accountDebit;
         this.AccountCredit = accountCredit;
@@ -64,8 +71,8 @@ public class clsAccount
             this.AccountParentNo,
             this.AccountNameAr,
             this.AccountNameEn,
-            this.AccountType,
-            this.AccountReport,
+            this.AccountTypeID,
+            this.AccountReportID,
             this.AccountLevel,
             this.AccountDebit,
             this.AccountCredit,
@@ -80,8 +87,8 @@ public class clsAccount
             this.AccountParentNo,
             this.AccountNameAr,
             this.AccountNameEn,
-            this.AccountType,
-            this.AccountReport,
+            this.AccountTypeID,
+            this.AccountReportID,
             this.AccountLevel,
             this.AccountDebit,
             this.AccountCredit,
@@ -122,8 +129,8 @@ public class clsAccount
         int AccountParentNo = 0;
         string AccountNameAr = null;
         string AccountNameEn = null;
-        int AccountType = 0;
-        int AccountReport = 0;
+        int AccountTypeID = 0;
+        int AccountReportID = 0;
         int AccountLevel = 0;
         decimal AccountDebit = 0;
         decimal AccountCredit = 0;
@@ -134,8 +141,8 @@ public class clsAccount
             ref AccountParentNo,
             ref AccountNameAr,
             ref AccountNameEn,
-            ref AccountType,
-            ref AccountReport,
+            ref AccountTypeID,
+            ref AccountReportID,
             ref AccountLevel,
             ref AccountDebit,
             ref AccountCredit,
@@ -148,8 +155,8 @@ public class clsAccount
                 AccountParentNo,
                 AccountNameAr,
                 AccountNameEn,
-                AccountType,
-                AccountReport,
+                AccountTypeID,
+                AccountReportID,
                 AccountLevel,
                 AccountDebit,
                 AccountCredit,

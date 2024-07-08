@@ -36,8 +36,8 @@ public static class clsAccountData
         int AccountParentNo,
         string AccountNameAr,
         string AccountNameEn,
-        int AccountType,
-        int AccountReport,
+        int AccountTypeID,
+        int AccountReportID,
         int AccountLevel,
         decimal AccountDebit,
         decimal AccountCredit,
@@ -53,8 +53,8 @@ public static class clsAccountData
                 command.Parameters.AddWithValue("@AccountParentNo", AccountParentNo);
                 command.Parameters.AddWithValue("@AccountNameAr", AccountNameAr);
                 command.Parameters.AddWithValue("@AccountNameEn", (object)AccountNameEn ?? DBNull.Value);
-                command.Parameters.AddWithValue("@AccountType", AccountType);
-                command.Parameters.AddWithValue("@AccountReport", AccountReport);
+                command.Parameters.AddWithValue("@AccountTypeID", AccountTypeID);
+                command.Parameters.AddWithValue("@AccountReportID", AccountReportID);
                 command.Parameters.AddWithValue("@AccountLevel", AccountLevel);
                 command.Parameters.AddWithValue("@AccountDebit", AccountDebit);
                 command.Parameters.AddWithValue("@AccountCredit", AccountCredit);
@@ -84,8 +84,8 @@ public static class clsAccountData
         int AccountParentNo,
         string AccountNameAr,
         string AccountNameEn,
-        int AccountType,
-        int AccountReport,
+        int AccountTypeID,
+        int AccountReportID,
         int AccountLevel,
         decimal AccountDebit,
         decimal AccountCredit,
@@ -102,8 +102,8 @@ public static class clsAccountData
                 command.Parameters.AddWithValue("@AccountParentNo", AccountParentNo);
                 command.Parameters.AddWithValue("@AccountNameAr", AccountNameAr);
                 command.Parameters.AddWithValue("@AccountNameEn", (object)AccountNameEn ?? DBNull.Value);
-                command.Parameters.AddWithValue("@AccountType", AccountType);
-                command.Parameters.AddWithValue("@AccountReport", AccountReport);
+                command.Parameters.AddWithValue("@AccountTypeID", AccountTypeID);
+                command.Parameters.AddWithValue("@AccountReportID", AccountReportID);
                 command.Parameters.AddWithValue("@AccountLevel", AccountLevel);
                 command.Parameters.AddWithValue("@AccountDebit", AccountDebit);
                 command.Parameters.AddWithValue("@AccountCredit", AccountCredit);
@@ -157,7 +157,7 @@ public static class clsAccountData
         ref int accountParentNoRef,
         ref string accountNameArRef,
         ref string accountNameEnRef,
-        ref int accountTypeRef,
+        ref int AccountTypeIDRef,
         ref int accountReportRef,
         ref int accountLevelRef,
         ref decimal accountDebitRef,
@@ -183,8 +183,8 @@ public static class clsAccountData
                         accountParentNoRef = reader["AccountParentNo"] != DBNull.Value ? Convert.ToInt32(reader["AccountParentNo"]) : 0;
                         accountNameArRef = reader["AccountNameAr"] != DBNull.Value ? Convert.ToString(reader["AccountNameAr"]) : null;
                         accountNameEnRef = reader["AccountNameEn"] != DBNull.Value ? Convert.ToString(reader["AccountNameEn"]) : null;
-                        accountTypeRef = reader["AccountType"] != DBNull.Value ? Convert.ToInt32(reader["AccountType"]) : 0;
-                        accountReportRef = reader["AccountReport"] != DBNull.Value ? Convert.ToInt32(reader["AccountReport"]) : 0;
+                        AccountTypeIDRef = reader["AccountTypeID"] != DBNull.Value ? Convert.ToInt32(reader["AccountTypeID"]) : 0;
+                        accountReportRef = reader["AccountReportID"] != DBNull.Value ? Convert.ToInt32(reader["AccountReportID"]) : 0;
                         accountLevelRef = reader["AccountLevel"] != DBNull.Value ? Convert.ToInt32(reader["AccountLevel"]) : 0;
                         accountDebitRef = reader["AccountDebit"] != DBNull.Value ? Convert.ToDecimal(reader["AccountDebit"]) : 0;
                         accountCreditRef = reader["AccountCredit"] != DBNull.Value ? Convert.ToDecimal(reader["AccountCredit"]) : 0;

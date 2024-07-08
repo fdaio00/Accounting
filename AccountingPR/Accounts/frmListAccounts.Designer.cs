@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tvAccounts = new System.Windows.Forms.TreeView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtAccountNo = new System.Windows.Forms.TextBox();
-            this.txtParentAccountNo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtAccountName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtAccountLevel = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtDebit = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBalance = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtCredit = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbReport = new System.Windows.Forms.ComboBox();
+            this.txtBalance = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDebit = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtAccountLevel = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtAccountName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtParentAccountNo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtAccountNo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbAccountType = new System.Windows.Forms.ComboBox();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.cbReport = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -70,6 +70,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "الحسابات";
+            // 
+            // tvAccounts
+            // 
+            this.tvAccounts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvAccounts.Location = new System.Drawing.Point(3, 20);
+            this.tvAccounts.Name = "tvAccounts";
+            this.tvAccounts.RightToLeftLayout = true;
+            this.tvAccounts.Size = new System.Drawing.Size(592, 530);
+            this.tvAccounts.TabIndex = 0;
+            this.tvAccounts.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvAccounts_AfterSelect);
             // 
             // groupBox2
             // 
@@ -94,137 +104,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "المدخلات";
             // 
-            // groupBox3
+            // txtCredit
             // 
-            this.groupBox3.Controls.Add(this.cbAccountType);
-            this.groupBox3.Controls.Add(this.cbReport);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Location = new System.Drawing.Point(616, 325);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(718, 124);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
+            this.txtCredit.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtCredit.Location = new System.Drawing.Point(20, 178);
+            this.txtCredit.Name = "txtCredit";
+            this.txtCredit.Size = new System.Drawing.Size(220, 26);
+            this.txtCredit.TabIndex = 5;
+            this.txtCredit.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtCredit.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
-            // groupBox4
+            // label7
             // 
-            this.groupBox4.Controls.Add(this.btnExit);
-            this.groupBox4.Controls.Add(this.btnDelete);
-            this.groupBox4.Controls.Add(this.btnSave);
-            this.groupBox4.Controls.Add(this.btnNew);
-            this.groupBox4.Location = new System.Drawing.Point(616, 455);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(729, 107);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            // 
-            // tvAccounts
-            // 
-            this.tvAccounts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvAccounts.Location = new System.Drawing.Point(3, 20);
-            this.tvAccounts.Name = "tvAccounts";
-            this.tvAccounts.Size = new System.Drawing.Size(592, 530);
-            this.tvAccounts.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label1.Location = new System.Drawing.Point(612, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "رقم الحساب:";
-            // 
-            // txtAccountNo
-            // 
-            this.txtAccountNo.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtAccountNo.Location = new System.Drawing.Point(369, 32);
-            this.txtAccountNo.Name = "txtAccountNo";
-            this.txtAccountNo.Size = new System.Drawing.Size(203, 26);
-            this.txtAccountNo.TabIndex = 0;
-            this.txtAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.txtAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
-            // 
-            // txtParentAccountNo
-            // 
-            this.txtParentAccountNo.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtParentAccountNo.Location = new System.Drawing.Point(20, 32);
-            this.txtParentAccountNo.Name = "txtParentAccountNo";
-            this.txtParentAccountNo.Size = new System.Drawing.Size(220, 26);
-            this.txtParentAccountNo.TabIndex = 1;
-            this.txtParentAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.txtParentAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label2.Location = new System.Drawing.Point(260, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "الحساب الأب:";
-            // 
-            // txtAccountName
-            // 
-            this.txtAccountName.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtAccountName.Location = new System.Drawing.Point(20, 79);
-            this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Size = new System.Drawing.Size(552, 26);
-            this.txtAccountName.TabIndex = 2;
-            this.txtAccountName.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.txtAccountName.Leave += new System.EventHandler(this.textBox1_Leave);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label3.Location = new System.Drawing.Point(604, 85);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "اسم الحساب:";
-            // 
-            // txtAccountLevel
-            // 
-            this.txtAccountLevel.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtAccountLevel.Location = new System.Drawing.Point(20, 131);
-            this.txtAccountLevel.Name = "txtAccountLevel";
-            this.txtAccountLevel.Size = new System.Drawing.Size(552, 26);
-            this.txtAccountLevel.TabIndex = 3;
-            this.txtAccountLevel.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.txtAccountLevel.Leave += new System.EventHandler(this.textBox1_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label4.Location = new System.Drawing.Point(584, 137);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 18);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "مستوى الحساب:";
-            // 
-            // txtDebit
-            // 
-            this.txtDebit.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtDebit.Location = new System.Drawing.Point(347, 178);
-            this.txtDebit.Name = "txtDebit";
-            this.txtDebit.Size = new System.Drawing.Size(225, 26);
-            this.txtDebit.TabIndex = 4;
-            this.txtDebit.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.txtDebit.Leave += new System.EventHandler(this.textBox1_Leave);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label5.Location = new System.Drawing.Point(657, 184);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 18);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "مدين:";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label7.Location = new System.Drawing.Point(260, 184);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 18);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "دائن:";
             // 
             // txtBalance
             // 
@@ -246,55 +144,117 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "رصيد:";
             // 
-            // txtCredit
+            // txtDebit
             // 
-            this.txtCredit.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtCredit.Location = new System.Drawing.Point(20, 178);
-            this.txtCredit.Name = "txtCredit";
-            this.txtCredit.Size = new System.Drawing.Size(220, 26);
-            this.txtCredit.TabIndex = 5;
-            this.txtCredit.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.txtCredit.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtDebit.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtDebit.Location = new System.Drawing.Point(347, 178);
+            this.txtDebit.Name = "txtDebit";
+            this.txtDebit.Size = new System.Drawing.Size(225, 26);
+            this.txtDebit.TabIndex = 4;
+            this.txtDebit.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtDebit.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
-            // label7
+            // label5
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label7.Location = new System.Drawing.Point(260, 184);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 18);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "دائن:";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label5.Location = new System.Drawing.Point(657, 184);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 18);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "مدين:";
             // 
-            // label8
+            // txtAccountLevel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label8.Location = new System.Drawing.Point(651, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 18);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "التقرير:";
+            this.txtAccountLevel.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtAccountLevel.Location = new System.Drawing.Point(20, 131);
+            this.txtAccountLevel.Name = "txtAccountLevel";
+            this.txtAccountLevel.Size = new System.Drawing.Size(552, 26);
+            this.txtAccountLevel.TabIndex = 3;
+            this.txtAccountLevel.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtAccountLevel.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
-            // label9
+            // label4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label9.Location = new System.Drawing.Point(613, 82);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 18);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "نوع الحساب:";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label4.Location = new System.Drawing.Point(584, 137);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 18);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "مستوى الحساب:";
             // 
-            // cbReport
+            // txtAccountName
             // 
-            this.cbReport.BackColor = System.Drawing.Color.LightGreen;
-            this.cbReport.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cbReport.FormattingEnabled = true;
-            this.cbReport.Location = new System.Drawing.Point(20, 29);
-            this.cbReport.Name = "cbReport";
-            this.cbReport.Size = new System.Drawing.Size(552, 26);
-            this.cbReport.TabIndex = 0;
+            this.txtAccountName.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtAccountName.Location = new System.Drawing.Point(20, 79);
+            this.txtAccountName.Name = "txtAccountName";
+            this.txtAccountName.Size = new System.Drawing.Size(552, 26);
+            this.txtAccountName.TabIndex = 2;
+            this.txtAccountName.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtAccountName.Leave += new System.EventHandler(this.textBox1_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label3.Location = new System.Drawing.Point(604, 85);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 18);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "اسم الحساب:";
+            // 
+            // txtParentAccountNo
+            // 
+            this.txtParentAccountNo.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtParentAccountNo.Location = new System.Drawing.Point(20, 32);
+            this.txtParentAccountNo.Name = "txtParentAccountNo";
+            this.txtParentAccountNo.Size = new System.Drawing.Size(220, 26);
+            this.txtParentAccountNo.TabIndex = 1;
+            this.txtParentAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtParentAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label2.Location = new System.Drawing.Point(260, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 18);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "الحساب الأب:";
+            // 
+            // txtAccountNo
+            // 
+            this.txtAccountNo.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtAccountNo.Location = new System.Drawing.Point(369, 32);
+            this.txtAccountNo.Name = "txtAccountNo";
+            this.txtAccountNo.Size = new System.Drawing.Size(203, 26);
+            this.txtAccountNo.TabIndex = 0;
+            this.txtAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label1.Location = new System.Drawing.Point(612, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "رقم الحساب:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cbAccountType);
+            this.groupBox3.Controls.Add(this.cbReport);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Location = new System.Drawing.Point(616, 325);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(718, 124);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
             // 
             // cbAccountType
             // 
@@ -306,35 +266,47 @@
             this.cbAccountType.Size = new System.Drawing.Size(552, 26);
             this.cbAccountType.TabIndex = 1;
             // 
-            // btnNew
+            // cbReport
             // 
-            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnNew.Location = new System.Drawing.Point(569, 28);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(140, 57);
-            this.btnNew.TabIndex = 0;
-            this.btnNew.Text = "جديد ";
-            this.btnNew.UseVisualStyleBackColor = true;
+            this.cbReport.BackColor = System.Drawing.Color.LightGreen;
+            this.cbReport.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.cbReport.FormattingEnabled = true;
+            this.cbReport.Location = new System.Drawing.Point(20, 29);
+            this.cbReport.Name = "cbReport";
+            this.cbReport.Size = new System.Drawing.Size(552, 26);
+            this.cbReport.TabIndex = 0;
             // 
-            // btnSave
+            // label9
             // 
-            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnSave.Location = new System.Drawing.Point(383, 28);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(140, 57);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "حفظ";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label9.Location = new System.Drawing.Point(613, 82);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 18);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "نوع الحساب:";
             // 
-            // btnDelete
+            // label8
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnDelete.Location = new System.Drawing.Point(197, 28);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(140, 57);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "حذف";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label8.Location = new System.Drawing.Point(651, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 18);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "التقرير:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnExit);
+            this.groupBox4.Controls.Add(this.btnDelete);
+            this.groupBox4.Controls.Add(this.btnSave);
+            this.groupBox4.Controls.Add(this.btnNew);
+            this.groupBox4.Location = new System.Drawing.Point(616, 455);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(729, 107);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
             // 
             // btnExit
             // 
@@ -347,6 +319,36 @@
             this.btnExit.Text = "خروج";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnDelete.Location = new System.Drawing.Point(197, 28);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(140, 57);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "حذف";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnSave.Location = new System.Drawing.Point(383, 28);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(140, 57);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "حفظ";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnNew.Location = new System.Drawing.Point(569, 28);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(140, 57);
+            this.btnNew.TabIndex = 0;
+            this.btnNew.Text = "جديد ";
+            this.btnNew.UseVisualStyleBackColor = true;
             // 
             // frmListAccounts
             // 

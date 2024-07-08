@@ -7,35 +7,35 @@ public class clsAccountType
     enum enMode { AddNew = 0, Update = 1 };
     private enMode _Mode;
 
-    public int AccountTypeID { get; set; }
-    public string AccountTypeNameAr { get; set; }
-    public string AccountTypeNameEn { get; set; }
+    public int AccountTypeIDID { get; set; }
+    public string AccountTypeIDNameAr { get; set; }
+    public string AccountTypeIDNameEn { get; set; }
 
     public clsAccountType()
     {
-        this.AccountTypeID = -1;
-        this.AccountTypeNameAr = "";
-        this.AccountTypeNameEn = null;
+        this.AccountTypeIDID = -1;
+        this.AccountTypeIDNameAr = "";
+        this.AccountTypeIDNameEn = null;
         _Mode = enMode.AddNew;
     }
 
-    public clsAccountType(int accountTypeID, string accountTypeNameAr, string accountTypeNameEn)
+    public clsAccountType(int AccountTypeIDID, string AccountTypeIDNameAr, string AccountTypeIDNameEn)
     {
-        this.AccountTypeID = accountTypeID;
-        this.AccountTypeNameAr = accountTypeNameAr;
-        this.AccountTypeNameEn = accountTypeNameEn;
+        this.AccountTypeIDID = AccountTypeIDID;
+        this.AccountTypeIDNameAr = AccountTypeIDNameAr;
+        this.AccountTypeIDNameEn = AccountTypeIDNameEn;
         _Mode = enMode.Update;
     }
 
-    private async Task<bool> _AddNewAccountTypeAsync()
+    private async Task<bool> _AddNewAccountTypeIDAsync()
     {
-        this.AccountTypeID = await clsAccountTypeData.AddNewAccountTypeAsync(this.AccountTypeNameAr, this.AccountTypeNameEn);
-        return (this.AccountTypeID > 0);
+        this.AccountTypeIDID = await clsAccountTypeData.AddNewAccountTypeIDAsync(this.AccountTypeIDNameAr, this.AccountTypeIDNameEn);
+        return (this.AccountTypeIDID > 0);
     }
 
-    private async Task<bool> _UpdateAccountTypeAsync()
+    private async Task<bool> _UpdateAccountTypeIDAsync()
     {
-        return await clsAccountTypeData.UpdateAccountTypeAsync(this.AccountTypeID, this.AccountTypeNameAr, this.AccountTypeNameEn);
+        return await clsAccountTypeData.UpdateAccountTypeIDAsync(this.AccountTypeIDID, this.AccountTypeIDNameAr, this.AccountTypeIDNameEn);
     }
 
     public async Task<bool> SaveAsync()
@@ -43,9 +43,9 @@ public class clsAccountType
         switch (_Mode)
         {
             case enMode.Update:
-                return await _UpdateAccountTypeAsync();
+                return await _UpdateAccountTypeIDAsync();
             case enMode.AddNew:
-                if (await _AddNewAccountTypeAsync())
+                if (await _AddNewAccountTypeIDAsync())
                 {
                     _Mode = enMode.Update;
                     return true;
@@ -59,24 +59,24 @@ public class clsAccountType
 
     public async Task<bool> DeleteAsync()
     {
-        return await clsAccountTypeData.DeleteAccountTypeAsync(this.AccountTypeID);
+        return await clsAccountTypeData.DeleteAccountTypeIDAsync(this.AccountTypeIDID);
     }
 
-    public static async Task<DataTable> GetAllAccountTypesAsync()
+    public static async Task<DataTable> GetAllAccountTypeIDsAsync()
     {
-        return await clsAccountTypeData.GetAllAccountTypesAsync();
+        return await clsAccountTypeData.GetAllAccountTypeIDsAsync();
     }
 
-    public static clsAccountType GetAccountTypeByID(int AccountTypeID)
+    public static clsAccountType GetAccountTypeIDByID(int AccountTypeIDID)
     {
-        string AccountTypeNameAr = null;
-        string AccountTypeNameEn = null;
+        string AccountTypeIDNameAr = null;
+        string AccountTypeIDNameEn = null;
 
-        bool isAccountTypeFound = clsAccountTypeData.FindAccountTypeByID(AccountTypeID, ref AccountTypeNameAr, ref AccountTypeNameEn);
+        bool isAccountTypeIDFound = clsAccountTypeData.FindAccountTypeIDByID(AccountTypeIDID, ref AccountTypeIDNameAr, ref AccountTypeIDNameEn);
 
-        if (isAccountTypeFound)
+        if (isAccountTypeIDFound)
         {
-            return new clsAccountType(AccountTypeID, AccountTypeNameAr, AccountTypeNameEn);
+            return new clsAccountType(AccountTypeIDID, AccountTypeIDNameAr, AccountTypeIDNameEn);
         }
         else
         {
