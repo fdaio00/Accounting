@@ -11,7 +11,7 @@ public static class clsAccountTypeData
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
-            using (SqlCommand command = new SqlCommand("SP_GetAllAccountTypeIDs", connection))
+            using (SqlCommand command = new SqlCommand("SP_GetAllAccountTypes", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
 
@@ -19,11 +19,14 @@ public static class clsAccountTypeData
                 {
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();
-                    dt.Load(reader); // Load data into DataTable
+                
+                        if(reader.HasRows) 
+                        dt.Load(reader); // Load data into DataTable
                 }
                 catch (Exception ex)
                 {
                     clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                    dt = null;
                 }
             }
         }
@@ -31,17 +34,17 @@ public static class clsAccountTypeData
         return dt;
     }
 
-    public static async Task<int> AddNewAccountTypeIDAsync(string AccountTypeIDNameAr, string AccountTypeIDNameEn)
+    public static async Task<int> AddNewAccountTypeAsync(string AccountTypeNameAr, string AccountTypeNameEn)
     {
         int AccountTypeIDID = -1;
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
-            using (SqlCommand command = new SqlCommand("SP_AddAccountTypeID", connection))
+            using (SqlCommand command = new SqlCommand("SP_AddAccountType", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountTypeIDNameAr", AccountTypeIDNameAr);
-                command.Parameters.AddWithValue("@AccountTypeIDNameEn", (object)AccountTypeIDNameEn ?? DBNull.Value);
+                command.Parameters.AddWithValue("@AccountTypeNameAr", AccountTypeNameAr);
+                command.Parameters.AddWithValue("@AccountTypeNameEn", (object)AccountTypeNameEn ?? DBNull.Value);
 
                 try
                 {
@@ -62,18 +65,18 @@ public static class clsAccountTypeData
         return AccountTypeIDID;
     }
 
-    public static async Task<bool> UpdateAccountTypeIDAsync(int AccountTypeIDID, string AccountTypeIDNameAr, string AccountTypeIDNameEn)
+    public static async Task<bool> UpdateAccountTypeAsync(int AccountTypeID, string AccountTypeNameAr, string AccountTypeNameEn)
     {
         bool success = false;
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
-            using (SqlCommand command = new SqlCommand("SP_UpdateAccountTypeID", connection))
+            using (SqlCommand command = new SqlCommand("SP_UpdateAccountType", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountTypeIDID", AccountTypeIDID);
-                command.Parameters.AddWithValue("@AccountTypeIDNameAr", AccountTypeIDNameAr);
-                command.Parameters.AddWithValue("@AccountTypeIDNameEn", (object)AccountTypeIDNameEn ?? DBNull.Value);
+                command.Parameters.AddWithValue("@AccountTypeID", AccountTypeID);
+                command.Parameters.AddWithValue("@AccountTypeNameAr", AccountTypeNameAr);
+                command.Parameters.AddWithValue("@AccountTypeNameEn", (object)AccountTypeNameEn ?? DBNull.Value);
 
                 try
                 {
@@ -91,16 +94,16 @@ public static class clsAccountTypeData
         return success;
     }
 
-    public static async Task<bool> DeleteAccountTypeIDAsync(int AccountTypeIDID)
+    public static async Task<bool> DeleteAccountTypeAsync(int AccountTypeID)
     {
         bool success = false;
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
-            using (SqlCommand command = new SqlCommand("SP_DeleteAccountTypeID", connection))
+            using (SqlCommand command = new SqlCommand("SP_DeleteAccountType", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountTypeIDID", AccountTypeIDID);
+                command.Parameters.AddWithValue("@AccountTypeID", AccountTypeID);
 
                 try
                 {
@@ -118,16 +121,16 @@ public static class clsAccountTypeData
         return success;
     }
 
-    public static bool FindAccountTypeIDByID(int AccountTypeIDID, ref string AccountTypeIDNameArRef, ref string AccountTypeIDNameEnRef)
+    public static bool FindAccountTypeByID(int AccountTypeID, ref string AccountTypeNameArRef, ref string AccountTypeNameEnRef)
     {
         bool isFound = false;
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
-            using (SqlCommand command = new SqlCommand("SP_GetAccountTypeIDByID", connection))
+            using (SqlCommand command = new SqlCommand("SP_GetAccountTypeByID", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountTypeIDID", AccountTypeIDID);
+                command.Parameters.AddWithValue("@AccountTypeID", AccountTypeID);
 
                 try
                 {
@@ -137,8 +140,8 @@ public static class clsAccountTypeData
                     {
                         isFound = true;
                         // Set ref parameters with null check
-                        AccountTypeIDNameArRef = reader["AccountTypeIDNameAr"] != DBNull.Value ? Convert.ToString(reader["AccountTypeIDNameAr"]) : null;
-                        AccountTypeIDNameEnRef = reader["AccountTypeIDNameEn"] != DBNull.Value ? Convert.ToString(reader["AccountTypeIDNameEn"]) : null;
+                        AccountTypeNameArRef = reader["AccountTypeNameAr"] != DBNull.Value ? Convert.ToString(reader["AccountTypeNameAr"]) : null;
+                        AccountTypeNameEnRef = reader["AccountTypeNameEn"] != DBNull.Value ? Convert.ToString(reader["AccountTypeNameEn"]) : null;
                     }
                     reader.Close();
                 }

@@ -20,7 +20,8 @@ public static class clsAccountData
                 {
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();
-                    dt.Load(reader); // Load data into DataTable
+                    if (reader.HasRows)
+                       if(reader.HasRows)   dt.Load(reader); // Load data into DataTable
                 }
                 catch (Exception ex)
                 {
@@ -80,7 +81,7 @@ public static class clsAccountData
     }
 
     public static async Task<bool> UpdateAccountAsync(
-        int AccountID,
+        int AccountNo,
         int AccountParentNo,
         string AccountNameAr,
         string AccountNameEn,
@@ -98,7 +99,7 @@ public static class clsAccountData
             using (SqlCommand command = new SqlCommand("SP_UpdateAccount", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountID", AccountID);
+                command.Parameters.AddWithValue("@AccountNo", AccountNo);
                 command.Parameters.AddWithValue("@AccountParentNo", AccountParentNo);
                 command.Parameters.AddWithValue("@AccountNameAr", AccountNameAr);
                 command.Parameters.AddWithValue("@AccountNameEn", (object)AccountNameEn ?? DBNull.Value);
@@ -134,7 +135,7 @@ public static class clsAccountData
             using (SqlCommand command = new SqlCommand("SP_DeleteAccount", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountID", accountID);
+                command.Parameters.AddWithValue("@AccountNo", accountID);
 
                 try
                 {
@@ -171,7 +172,7 @@ public static class clsAccountData
             using (SqlCommand command = new SqlCommand("SP_GetAccountByID", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountID", accountID);
+                command.Parameters.AddWithValue("@AccountNo", accountID);
 
                 try
                 {
@@ -181,7 +182,7 @@ public static class clsAccountData
                     {
                         isFound = true;
                         accountParentNoRef = reader["AccountParentNo"] != DBNull.Value ? Convert.ToInt32(reader["AccountParentNo"]) : 0;
-                        accountNameArRef = reader["AccountNameAr"] != DBNull.Value ? Convert.ToString(reader["AccountNameAr"]) : null;
+                        accountNameArRef = reader["AccountNameAr"] != DBNull.Value ? Convert.ToString(reader["AccountNameAr"]) : "";
                         accountNameEnRef = reader["AccountNameEn"] != DBNull.Value ? Convert.ToString(reader["AccountNameEn"]) : null;
                         AccountTypeIDRef = reader["AccountTypeID"] != DBNull.Value ? Convert.ToInt32(reader["AccountTypeID"]) : 0;
                         accountReportRef = reader["AccountReportID"] != DBNull.Value ? Convert.ToInt32(reader["AccountReportID"]) : 0;

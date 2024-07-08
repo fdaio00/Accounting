@@ -20,7 +20,7 @@ public static class clsCurrencyData
                 {
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();
-                    dt.Load(reader); // Load data into DataTable
+                   if(reader.HasRows)   dt.Load(reader); // Load data into DataTable
                 }
                 catch (Exception ex)
                 {

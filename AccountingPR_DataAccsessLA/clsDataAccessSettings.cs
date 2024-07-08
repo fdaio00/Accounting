@@ -133,7 +133,7 @@ public class clsDataAccessSettings
                     {
                         if (reader.HasRows)
                         {
-                            dt.Load(reader);
+                           if(reader.HasRows)   dt.Load(reader);
                         }
                     }
                 }

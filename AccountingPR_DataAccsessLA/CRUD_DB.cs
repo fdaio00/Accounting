@@ -65,7 +65,8 @@ namespace AccountingPR_DataAccsessLA
         //                {
         //                    if (reader.HasRows)
         //                    {
-        //                        dt.Load(reader);
+        //                       if(reader.HasRows)
+        //                       dt.Load(reader);
         //                    }
         //                }
         //            }

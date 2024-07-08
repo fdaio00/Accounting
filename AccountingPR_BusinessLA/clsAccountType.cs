@@ -7,35 +7,35 @@ public class clsAccountType
     enum enMode { AddNew = 0, Update = 1 };
     private enMode _Mode;
 
-    public int AccountTypeIDID { get; set; }
-    public string AccountTypeIDNameAr { get; set; }
-    public string AccountTypeIDNameEn { get; set; }
+    public int AccountTypeID { get; set; }
+    public string AccountTypeINameAr { get; set; }
+    public string AccountTypeNameEn { get; set; }
 
     public clsAccountType()
     {
-        this.AccountTypeIDID = -1;
-        this.AccountTypeIDNameAr = "";
-        this.AccountTypeIDNameEn = null;
+        this.AccountTypeID = -1;
+        this.AccountTypeINameAr = "";
+        this.AccountTypeNameEn = null;
         _Mode = enMode.AddNew;
     }
 
-    public clsAccountType(int AccountTypeIDID, string AccountTypeIDNameAr, string AccountTypeIDNameEn)
+    public clsAccountType(int AccountTypeID, string AccountTypeINameAr, string AccountTypeNameEn)
     {
-        this.AccountTypeIDID = AccountTypeIDID;
-        this.AccountTypeIDNameAr = AccountTypeIDNameAr;
-        this.AccountTypeIDNameEn = AccountTypeIDNameEn;
+        this.AccountTypeID = AccountTypeID;
+        this.AccountTypeINameAr = AccountTypeINameAr;
+        this.AccountTypeNameEn = AccountTypeNameEn;
         _Mode = enMode.Update;
     }
 
     private async Task<bool> _AddNewAccountTypeIDAsync()
     {
-        this.AccountTypeIDID = await clsAccountTypeData.AddNewAccountTypeIDAsync(this.AccountTypeIDNameAr, this.AccountTypeIDNameEn);
-        return (this.AccountTypeIDID > 0);
+        this.AccountTypeID = await clsAccountTypeData.AddNewAccountTypeAsync(this.AccountTypeINameAr, this.AccountTypeNameEn);
+        return (this.AccountTypeID > 0);
     }
 
     private async Task<bool> _UpdateAccountTypeIDAsync()
     {
-        return await clsAccountTypeData.UpdateAccountTypeIDAsync(this.AccountTypeIDID, this.AccountTypeIDNameAr, this.AccountTypeIDNameEn);
+        return await clsAccountTypeData.UpdateAccountTypeAsync(this.AccountTypeID, this.AccountTypeINameAr, this.AccountTypeNameEn);
     }
 
     public async Task<bool> SaveAsync()
@@ -59,7 +59,7 @@ public class clsAccountType
 
     public async Task<bool> DeleteAsync()
     {
-        return await clsAccountTypeData.DeleteAccountTypeIDAsync(this.AccountTypeIDID);
+        return await clsAccountTypeData.DeleteAccountTypeAsync(this.AccountTypeID);
     }
 
     public static async Task<DataTable> GetAllAccountTypeIDsAsync()
@@ -67,16 +67,16 @@ public class clsAccountType
         return await clsAccountTypeData.GetAllAccountTypeIDsAsync();
     }
 
-    public static clsAccountType GetAccountTypeIDByID(int AccountTypeIDID)
+    public static clsAccountType GetAccountTypeIDByID(int AccountTypeID)
     {
-        string AccountTypeIDNameAr = null;
-        string AccountTypeIDNameEn = null;
+        string AccountTypeINameAr = null;
+        string AccountTypeNameEn = null;
 
-        bool isAccountTypeIDFound = clsAccountTypeData.FindAccountTypeIDByID(AccountTypeIDID, ref AccountTypeIDNameAr, ref AccountTypeIDNameEn);
+        bool isAccountTypeIDFound = clsAccountTypeData.FindAccountTypeByID(AccountTypeID, ref AccountTypeINameAr, ref AccountTypeNameEn);
 
         if (isAccountTypeIDFound)
         {
-            return new clsAccountType(AccountTypeIDID, AccountTypeIDNameAr, AccountTypeIDNameEn);
+            return new clsAccountType(AccountTypeID, AccountTypeINameAr, AccountTypeNameEn);
         }
         else
         {

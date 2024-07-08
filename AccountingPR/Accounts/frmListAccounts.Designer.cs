@@ -112,6 +112,7 @@
             this.txtCredit.Size = new System.Drawing.Size(220, 26);
             this.txtCredit.TabIndex = 5;
             this.txtCredit.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtCredit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtCredit.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label7
@@ -132,6 +133,7 @@
             this.txtBalance.Size = new System.Drawing.Size(552, 26);
             this.txtBalance.TabIndex = 6;
             this.txtBalance.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtBalance.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label6
@@ -152,6 +154,7 @@
             this.txtDebit.Size = new System.Drawing.Size(225, 26);
             this.txtDebit.TabIndex = 4;
             this.txtDebit.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtDebit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtDebit.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label5
@@ -172,6 +175,7 @@
             this.txtAccountLevel.Size = new System.Drawing.Size(552, 26);
             this.txtAccountLevel.TabIndex = 3;
             this.txtAccountLevel.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtAccountLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtAccountLevel.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label4
@@ -212,6 +216,7 @@
             this.txtParentAccountNo.Size = new System.Drawing.Size(220, 26);
             this.txtParentAccountNo.TabIndex = 1;
             this.txtParentAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtParentAccountNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtParentAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label2
@@ -232,6 +237,7 @@
             this.txtAccountNo.Size = new System.Drawing.Size(203, 26);
             this.txtAccountNo.TabIndex = 0;
             this.txtAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.txtAccountNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
@@ -349,6 +355,7 @@
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "جديد ";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // frmListAccounts
             // 

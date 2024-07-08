@@ -21,16 +21,16 @@ namespace AccountingPR.Accounts
         async void _FillAccountTypeIDComboBox()
         {
             _dtAccountTypes = await clsAccountType.GetAllAccountTypeIDsAsync();
-            if (_dtAccountTypes != null)
+            if (_dtAccountTypes.Rows.Count>0)
             {
                 cbAccountType.DataSource = _dtAccountTypes;
                 cbAccountType.ValueMember = "AccountTypeID";
                 cbAccountType.DisplayMember = "AccountTypeNameAr";
 
-                //    foreach (DataRow r in _dtAccountTypes.Rows)
-                //    {
-                //        cbAccountTypeID.Items.Add(r["AccountTypeIDNameAr"]);
-                //    }
+                //foreach (DataRow r in _dtAccountTypes.Rows)
+                //{
+                //    cbAccountType.Items.Add(r["AccountTypeNameAr"]);
+                //}
             }
         }
         public frmListAccounts()
@@ -49,7 +49,7 @@ namespace AccountingPR.Accounts
             dataView.RowFilter = "AccountParentNo=0";
             foreach(DataRowView dv in dataView)
             {
-                tn = new TreeNode((dv["AccountNo"]).ToString()+" " + dv["AccountNmarAr"].ToString() );
+                tn = new TreeNode((dv["AccountNo"]).ToString()+" " + dv["AccountNameAr"].ToString() );
                 tn.Tag = dv["AccountNo"].ToString();
                 tvAccounts.Nodes.Add(tn);
             }
@@ -74,8 +74,8 @@ namespace AccountingPR.Accounts
             txtDebit.Text = _Account.AccountDebit.ToString();
             txtCredit.Text = _Account.AccountCredit.ToString();
             txtParentAccountNo.Text = _Account.AccountParentNo.ToString();
-            cbAccountType.Text = cbAccountType.FindString(_Account.AccountType.AccountTypeIDNameAr).ToString();
-            cbReport.Text = cbReport.FindString(_Account.AccoutReport.ReportNameAr).ToString();
+            cbAccountType.Text = _Account.AccountType.AccountTypeINameAr;
+            cbReport.Text = _Account.AccoutReport.ReportNameAr;
             
         }
         private async void _CreateChildNode(TreeNode treeNode)
@@ -85,7 +85,7 @@ namespace AccountingPR.Accounts
             dataView.RowFilter = $"AccountParentNo={Convert.ToInt32(treeNode.Tag)}";
             foreach (DataRowView dv in dataView)
             {
-                childNode = new TreeNode((dv["AccountNo"]).ToString() + " " + dv["AccountNmarAr"].ToString());
+                childNode = new TreeNode((dv["AccountNo"]).ToString() + " " + dv["AccountNameAr"].ToString());
                 childNode.Tag = dv["AccountNo"].ToString();
                 treeNode.Nodes.Add(childNode);
                 _CreateChildNode(childNode);
@@ -133,8 +133,36 @@ namespace AccountingPR.Accounts
 
         private void tvAccounts_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            int AccountNo = Convert.ToInt32(tvAccounts.SelectedNode.Tag);
+            int AccountNo = Convert.ToInt32(tvAccounts.SelectedNode.Tag.ToString());
             _LoadAccountInfo(AccountNo);
+            btnSave.Enabled = true;
+        }
+
+        private void txtAccountNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+        }
+        void _ClearTextBoxes()
+        {
+            txtAccountLevel.Clear();
+            txtAccountNo.Clear(); 
+            txtAccountName.Clear(); 
+            txtBalance.Clear(); 
+                txtDebit.Clear(); 
+            txtCredit.Clear(); 
+            txtParentAccountNo.Clear();
+            cbAccountType.SelectedIndex = 0; 
+            cbReport.SelectedIndex = 0; 
+        }
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            btnSave.Enabled = true; 
+            _Account = new clsAccount();
+            _ClearTextBoxes();
+            txtAccountName.Focus();
         }
     }
 }
