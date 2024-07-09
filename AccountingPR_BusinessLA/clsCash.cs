@@ -8,33 +8,33 @@ public class clsCash
     private enMode _Mode;
     public int CashID { get; set; }
     public string CashNameAr { get; set; }
-    public string CashNameEn { get; set; }
+    public int AccountNo { get; set; }
 
     public clsCash()
     {
         this.CashID = -1;
         this.CashNameAr = "";
-        this.CashNameEn = null;
+        this.AccountNo = -1;
         _Mode = enMode.AddNew;
     }
 
-    public clsCash(int cashID, string cashNameAr, string cashNameEn)
+    public clsCash(int cashID, string cashNameAr, int AccountNo)
     {
         this.CashID = cashID;
         this.CashNameAr = cashNameAr;
-        this.CashNameEn = cashNameEn;
+        this.AccountNo = AccountNo;
         _Mode = enMode.Update;
     }
 
     private async Task<bool> _AddNewCashAsync()
     {
-        this.CashID = await clsCashData.AddNewCashAsync(this.CashNameAr, this.CashNameEn);
+        this.CashID = await clsCashData.AddNewCashAsync(this.CashNameAr, this.AccountNo);
         return (this.CashID > 0);
     }
 
     private async Task<bool> _UpdateCashAsync()
     {
-        return await clsCashData.UpdateCashAsync(this.CashID, this.CashNameAr, this.CashNameEn);
+        return await clsCashData.UpdateCashAsync(this.CashID, this.CashNameAr, this.AccountNo);
     }
 
     public async Task<bool> SaveAsync()
@@ -69,12 +69,12 @@ public class clsCash
     public static clsCash GetCashByID(int cashID)
     {
         string CashNameAr = null;
-        string CashNameEn = null;
+        int AccountNo = -1;
 
-        bool isCashFound = clsCashData.FindCashByID(cashID, ref CashNameAr, ref CashNameEn);
+        bool isCashFound = clsCashData.FindCashByID(cashID, ref CashNameAr, ref AccountNo);
         if (isCashFound)
         {
-            return new clsCash(cashID, CashNameAr, CashNameEn);
+            return new clsCash(cashID, CashNameAr, AccountNo);
         }
         else
         {

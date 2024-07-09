@@ -32,7 +32,7 @@ public static class clsBankData
         return dt;
     }
 
-    public static async Task<int> AddNewBankAsync(string bankNameAr, string bankNameEn)
+    public static async Task<int> AddNewBankAsync(string bankNameAr, int AccountNo)
     {
         int bankID = -1;
 
@@ -41,13 +41,18 @@ public static class clsBankData
             using (SqlCommand command = new SqlCommand("SP_AddBank", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                SqlParameter output = new SqlParameter("@BankID", SqlDbType.Int)
+                { Direction = ParameterDirection.Output };
+                command.Parameters.Add(output);
                 command.Parameters.AddWithValue("@BankNameAr", bankNameAr);
-                command.Parameters.AddWithValue("@BankNameEn", (object)bankNameEn ?? DBNull.Value);
+                command.Parameters.AddWithValue("@AccountNo", (object)AccountNo ?? DBNull.Value);
 
                 try
                 {
                     await connection.OpenAsync();
-                    bankID = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    await command.ExecuteScalarAsync();
+                    if (output != null)
+                        bankID = Convert.ToInt32(output.Value);
                 }
                 catch (Exception ex)
                 {
@@ -59,7 +64,7 @@ public static class clsBankData
         return bankID;
     }
 
-    public static async Task<bool> UpdateBankAsync(int bankID, string bankNameAr, string bankNameEn)
+    public static async Task<bool> UpdateBankAsync(int bankID, string bankNameAr, int AccountNo)
     {
         bool success = false;
 
@@ -70,7 +75,7 @@ public static class clsBankData
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@BankID", bankID);
                 command.Parameters.AddWithValue("@BankNameAr", bankNameAr);
-                command.Parameters.AddWithValue("@BankNameEn", (object)bankNameEn ?? DBNull.Value);
+                command.Parameters.AddWithValue("@AccountNo", (object)AccountNo ?? DBNull.Value);
 
                 try
                 {
@@ -115,10 +120,9 @@ public static class clsBankData
         return success;
     }
 
-    public static bool FindBankByID(int bankID, out string bankNameAr, out string bankNameEn)
+    public static bool FindBankByID(int bankID, ref string bankNameAr, ref int AccountNo)
     {
-        bankNameAr = null;
-        bankNameEn = null;
+
         bool isFound = false;
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
@@ -136,7 +140,7 @@ public static class clsBankData
                     {
                         isFound = true;
                         bankNameAr = reader["BankNameAr"] != DBNull.Value ? Convert.ToString(reader["BankNameAr"]) : null;
-                        bankNameEn = reader["BankNameEn"] != DBNull.Value ? Convert.ToString(reader["BankNameEn"]) : null;
+                        AccountNo = reader["AccountNo"] != DBNull.Value ? Convert.ToInt32(reader["AccountNo"]) : -1;
                     }
                     reader.Close();
                 }

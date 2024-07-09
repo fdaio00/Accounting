@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace AccountingPR.Global
 {
 
-    public static class clsUtil
+    public  class clsUtil
     {
 
         public static Bitmap ByteToImage(byte[] logo)
@@ -47,7 +47,7 @@ namespace AccountingPR.Global
             }
         }
 
-        private static void LogError(Exception ex)
+        public static void LogError(Exception ex)
         {
             string debugFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
             if (!Directory.Exists(debugFolder))
@@ -61,5 +61,11 @@ namespace AccountingPR.Global
             File.AppendAllText(logFilePath, errorMessage);
         }
 
+        public  void TextBoxEnter(object sender , EventArgs e)
+        {
+            TextBox temp = (TextBox)sender;
+            temp.BackColor = Color.LightYellow;
+            temp.SelectAll(); temp.Focus();
+        }
     }
 }

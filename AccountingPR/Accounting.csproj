@@ -85,6 +85,22 @@
     <Compile Include="Accounts\frmListAccounts.Designer.cs">
       <DependentUpon>frmListAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\frmSearchAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounts\frmSearchAccount.Designer.cs">
+      <DependentUpon>frmSearchAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\frmListBanksCashes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounts\frmListBanksCashes.Designer.cs">
+      <DependentUpon>frmListBanksCashes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cashes\frmListCashes.cs" />
+    <Compile Include="Cashes\frmListCashes.Designer.cs">
+      <DependentUpon>frmListCashes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\CustomControl1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -129,6 +145,15 @@
     </Compile>
     <EmbeddedResource Include="Accounts\frmListAccounts.resx">
       <DependentUpon>frmListAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounts\frmSearchAccount.resx">
+      <DependentUpon>frmSearchAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounts\frmListBanksCashes.resx">
+      <DependentUpon>frmListBanksCashes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cashes\frmListCashes.resx">
+      <DependentUpon>frmListCashes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\frmCompanyInfo.resx">
       <DependentUpon>frmCompanyInfo.cs</DependentUpon>
@@ -176,7 +201,9 @@
       <Name>Accounting_BL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Bank\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\document.png" />
   </ItemGroup>

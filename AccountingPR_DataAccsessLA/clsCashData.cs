@@ -33,7 +33,7 @@ public static class clsCashData
         return dt;
     }
 
-    public static async Task<int> AddNewCashAsync(string CashNameAr, string CashNameEn)
+    public static async Task<int> AddNewCashAsync(string CashNameAr, int AccountNo)
     {
         int cashID = -1;
 
@@ -42,13 +42,20 @@ public static class clsCashData
             using (SqlCommand command = new SqlCommand("SP_AddCash", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                SqlParameter output = new SqlParameter("@CashID", SqlDbType.Int)
+                { Direction = ParameterDirection.Output };
+                command.Parameters.Add(output);
+                
                 command.Parameters.AddWithValue("@CashNameAr", CashNameAr);
-                command.Parameters.AddWithValue("@CashNameEn", (object)CashNameEn ?? DBNull.Value);
+                command.Parameters.AddWithValue("@AccountNo", (object)AccountNo ?? DBNull.Value);
 
                 try
                 {
                     await connection.OpenAsync();
-                    cashID = Convert.ToInt32(await command.ExecuteScalarAsync());
+                         await command.ExecuteScalarAsync();
+                    if (output != null)
+                        cashID = Convert.ToInt32(output.Value);
+
                 }
                 catch (Exception ex)
                 {
@@ -64,7 +71,7 @@ public static class clsCashData
         return cashID;
     }
 
-    public static async Task<bool> UpdateCashAsync(int CashID, string CashNameAr, string CashNameEn)
+    public static async Task<bool> UpdateCashAsync(int CashID, string CashNameAr, int AccountNo)
     {
         bool success = false;
 
@@ -75,7 +82,7 @@ public static class clsCashData
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@CashID", CashID);
                 command.Parameters.AddWithValue("@CashNameAr", CashNameAr);
-                command.Parameters.AddWithValue("@CashNameEn", (object)CashNameEn ?? DBNull.Value);
+                command.Parameters.AddWithValue("@AccountNo", (object)AccountNo ?? DBNull.Value);
 
                 try
                 {
@@ -120,7 +127,7 @@ public static class clsCashData
         return success;
     }
 
-    public static bool FindCashByID(int cashID, ref string cashNameArRef, ref string cashNameEnRef)
+    public static bool FindCashByID(int cashID, ref string cashNameArRef, ref int AccountNoRef)
     {
         bool isFound = false;
 
@@ -139,7 +146,7 @@ public static class clsCashData
                     {
                         isFound = true;
                         cashNameArRef = reader["CashNameAr"] != DBNull.Value ? Convert.ToString(reader["CashNameAr"]) : null;
-                        cashNameEnRef = reader["CashNameEn"] != DBNull.Value ? Convert.ToString(reader["CashNameEn"]) : null;
+                        AccountNoRef = reader["AccountNo"] != DBNull.Value ? Convert.ToInt32(reader["AccountNo"]) : -1;
                     }
                     reader.Close();
                 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvAccounts = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -55,10 +56,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -67,7 +70,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(598, 553);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "الحسابات";
             // 
@@ -100,7 +103,7 @@
             this.groupBox2.Location = new System.Drawing.Point(616, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(718, 292);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "المدخلات";
             // 
@@ -114,6 +117,7 @@
             this.txtCredit.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtCredit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtCredit.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtCredit.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label7
             // 
@@ -135,6 +139,7 @@
             this.txtBalance.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtBalance.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtBalance.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label6
             // 
@@ -156,6 +161,7 @@
             this.txtDebit.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtDebit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtDebit.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtDebit.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label5
             // 
@@ -176,7 +182,8 @@
             this.txtAccountLevel.TabIndex = 3;
             this.txtAccountLevel.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtAccountLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
-            this.txtAccountLevel.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtAccountLevel.Leave += new System.EventHandler(this.txtAccountLevel_Leave);
+            this.txtAccountLevel.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label4
             // 
@@ -197,6 +204,7 @@
             this.txtAccountName.TabIndex = 2;
             this.txtAccountName.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtAccountName.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtAccountName.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label3
             // 
@@ -218,6 +226,7 @@
             this.txtParentAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtParentAccountNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtParentAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtParentAccountNo.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label2
             // 
@@ -239,6 +248,7 @@
             this.txtAccountNo.Enter += new System.EventHandler(this.textBox1_Enter);
             this.txtAccountNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccountNo_KeyPress);
             this.txtAccountNo.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtAccountNo.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxValidating);
             // 
             // label1
             // 
@@ -270,7 +280,7 @@
             this.cbAccountType.Location = new System.Drawing.Point(20, 82);
             this.cbAccountType.Name = "cbAccountType";
             this.cbAccountType.Size = new System.Drawing.Size(552, 26);
-            this.cbAccountType.TabIndex = 1;
+            this.cbAccountType.TabIndex = 9;
             // 
             // cbReport
             // 
@@ -280,7 +290,7 @@
             this.cbReport.Location = new System.Drawing.Point(20, 29);
             this.cbReport.Name = "cbReport";
             this.cbReport.Size = new System.Drawing.Size(552, 26);
-            this.cbReport.TabIndex = 0;
+            this.cbReport.TabIndex = 8;
             // 
             // label9
             // 
@@ -311,7 +321,7 @@
             this.groupBox4.Location = new System.Drawing.Point(616, 455);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(729, 107);
-            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
             // btnExit
@@ -321,7 +331,7 @@
             this.btnExit.Location = new System.Drawing.Point(11, 28);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(140, 57);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 13;
             this.btnExit.Text = "خروج";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.button4_Click);
@@ -332,9 +342,10 @@
             this.btnDelete.Location = new System.Drawing.Point(197, 28);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 57);
-            this.btnDelete.TabIndex = 2;
+            this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "حذف";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -342,9 +353,10 @@
             this.btnSave.Location = new System.Drawing.Point(383, 28);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(140, 57);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "حفظ";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnNew
             // 
@@ -352,15 +364,20 @@
             this.btnNew.Location = new System.Drawing.Point(569, 28);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(140, 57);
-            this.btnNew.TabIndex = 0;
+            this.btnNew.TabIndex = 10;
             this.btnNew.Text = "جديد ";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmListAccounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(1346, 576);
             this.Controls.Add(this.groupBox4);
@@ -383,6 +400,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -416,5 +434,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

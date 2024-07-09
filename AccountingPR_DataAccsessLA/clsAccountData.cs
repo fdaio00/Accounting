@@ -20,8 +20,9 @@ public static class clsAccountData
                 {
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();
-                    if (reader.HasRows)
-                       if(reader.HasRows)   dt.Load(reader); // Load data into DataTable
+                    
+                       if(reader.HasRows)  
+                        dt.Load(reader); // Load data into DataTable
                 }
                 catch (Exception ex)
                 {
@@ -31,9 +32,93 @@ public static class clsAccountData
         }
 
         return dt;
+    }  
+    public static async Task<DataTable> SearchByAccountNo(int AccountNo)
+    {
+        DataTable dt = new DataTable();
+
+        using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SP_SearchByAccountNo", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@AccountNo", AccountNo);
+
+                try
+                {
+                    await connection.OpenAsync();
+                    SqlDataReader reader = await command.ExecuteReaderAsync();
+                    
+                       if(reader.HasRows)  
+                        dt.Load(reader); // Load data into DataTable
+                }
+                catch (Exception ex)
+                {
+                    clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                    dt = null;
+                }
+            }
+        }
+
+        return dt;
+    }
+      public static async Task<bool> CheckAccountHasChildren(int AccountNo)
+    {
+        bool IsFound = false; 
+        using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SP_CheckAccountHasChildren", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@AccountNo", AccountNo);
+
+                try
+                {
+                    await connection.OpenAsync();
+                    SqlDataReader reader = await command.ExecuteReaderAsync();
+                    
+                       if(reader.HasRows)  
+                        IsFound = true;
+                }
+                catch (Exception ex)
+                {
+                    clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                }
+            }
+        }
+
+        return IsFound;
+    }
+     public static async Task<bool> SCheckAccountHasJournal(int AccountNo)
+    {
+        bool IsFound = false; 
+        using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SP_CheckAccountHasJournal", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@AccountNo", AccountNo);
+
+                try
+                {
+                    await connection.OpenAsync();
+                    SqlDataReader reader = await command.ExecuteReaderAsync();
+                    
+                       if(reader.HasRows)  
+                        IsFound = true;
+                }
+                catch (Exception ex)
+                {
+                    clsDataAccessSettings.SetErrorLoggingEvent(ex.Message);
+                }
+            }
+        }
+
+        return IsFound;
     }
 
-    public static async Task<int> AddNewAccountAsync(
+    public static async Task<bool> AddNewAccountAsync(
+        int AccountNo,
         int AccountParentNo,
         string AccountNameAr,
         string AccountNameEn,
@@ -44,13 +129,14 @@ public static class clsAccountData
         decimal AccountCredit,
         decimal AccountBalance)
     {
-        int accountID = -1;
+        int result = 0; 
 
         using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
         {
             using (SqlCommand command = new SqlCommand("SP_AddAccount", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@AccountNo", AccountNo);
                 command.Parameters.AddWithValue("@AccountParentNo", AccountParentNo);
                 command.Parameters.AddWithValue("@AccountNameAr", AccountNameAr);
                 command.Parameters.AddWithValue("@AccountNameEn", (object)AccountNameEn ?? DBNull.Value);
@@ -64,7 +150,7 @@ public static class clsAccountData
                 try
                 {
                     await connection.OpenAsync();
-                    accountID = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    result = Convert.ToInt32(await command.ExecuteNonQueryAsync());
                 }
                 catch (Exception ex)
                 {
@@ -77,7 +163,7 @@ public static class clsAccountData
             }
         }
 
-        return accountID;
+        return (result>0);
     }
 
     public static async Task<bool> UpdateAccountAsync(
@@ -126,7 +212,7 @@ public static class clsAccountData
         return success;
     }
 
-    public static async Task<bool> DeleteAccountAsync(int accountID)
+    public static async Task<bool> DeleteAccountAsync(int accountNo)
     {
         bool success = false;
 
@@ -135,7 +221,7 @@ public static class clsAccountData
             using (SqlCommand command = new SqlCommand("SP_DeleteAccount", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@AccountNo", accountID);
+                command.Parameters.AddWithValue("@AccountNo", accountNo);
 
                 try
                 {

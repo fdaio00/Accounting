@@ -7,7 +7,7 @@ public class clsAccount
     enum enMode { AddNew = 0, Update = 1 };
     private enMode _Mode;
 
-    public int AccountID { get; set; }
+    public int AccountNo { get; set; }
     public int AccountParentNo { get; set; }
     public string AccountNameAr { get; set; }
     public string AccountNameEn { get; set; }
@@ -25,7 +25,7 @@ public class clsAccount
 
     public clsAccount()
     {
-        this.AccountID = -1;
+        this.AccountNo = -1;
         this.AccountParentNo = 0;
         this.AccountNameAr = "";
         this.AccountNameEn = null;
@@ -39,7 +39,7 @@ public class clsAccount
     }
 
     public  clsAccount(
-        int accountID,
+        int accountNo,
         int accountParentNo,
         string accountNameAr,
         string accountNameEn,
@@ -50,7 +50,7 @@ public class clsAccount
         decimal accountCredit,
         decimal accountBalance)
     {
-        this.AccountID = accountID;
+        this.AccountNo = accountNo;
         this.AccountParentNo = accountParentNo;
         this.AccountNameAr = accountNameAr;
         this.AccountNameEn = accountNameEn;
@@ -67,7 +67,7 @@ public class clsAccount
 
     private async Task<bool> _AddNewAccountAsync()
     {
-        this.AccountID = await clsAccountData.AddNewAccountAsync(
+       return await clsAccountData.AddNewAccountAsync(this.AccountNo,
             this.AccountParentNo,
             this.AccountNameAr,
             this.AccountNameEn,
@@ -77,13 +77,12 @@ public class clsAccount
             this.AccountDebit,
             this.AccountCredit,
             this.AccountBalance);
-        return (this.AccountID > 0);
     }
 
     private async Task<bool> _UpdateAccountAsync()
     {
         return await clsAccountData.UpdateAccountAsync(
-            this.AccountID,
+            this.AccountNo,
             this.AccountParentNo,
             this.AccountNameAr,
             this.AccountNameEn,
@@ -114,14 +113,27 @@ public class clsAccount
         }
     }
 
-    public async Task<bool> DeleteAsync()
+    public  async Task<bool> DeleteAsync()
     {
-        return await clsAccountData.DeleteAccountAsync(this.AccountID);
+        return await clsAccountData.DeleteAccountAsync(this.AccountNo);
     }
 
     public static async Task<DataTable> GetAllAccountsAsync()
     {
         return await clsAccountData.GetAllAccountsAsync();
+    }
+    public static async Task<DataTable> SearchByAccountNo(int AccountNO)
+    {
+        return await clsAccountData.SearchByAccountNo(AccountNO);
+    }
+
+    public static async Task<bool> CheckAccountHasChildren(int AccountNo)
+    {
+        return await clsAccountData.CheckAccountHasChildren(AccountNo);
+    }
+ public static async Task<bool> CheckAccountHasJournal(int AccountNo)
+    {
+        return await clsAccountData.SCheckAccountHasJournal(AccountNo);
     }
 
     public static clsAccount GetAccountByID(int AccountID)

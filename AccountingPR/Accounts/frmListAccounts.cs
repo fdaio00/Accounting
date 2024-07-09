@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountingPR.Global;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,8 @@ namespace AccountingPR.Accounts
         clsAccount _Account; 
         DataTable _dtReports;
         DataTable _dtAccountTypes;
-
+        enum enMode { AddNew =0, Update = 1 };
+        enMode _Mode;
         async void _FillAccountTypeIDComboBox()
         {
             _dtAccountTypes = await clsAccountType.GetAllAccountTypeIDsAsync();
@@ -38,6 +40,20 @@ namespace AccountingPR.Accounts
 
         {
             InitializeComponent();
+        }
+        void _EnbaleDesableTextBoxes(bool IsEnabled)
+        {
+            txtAccountLevel.Enabled = IsEnabled;
+            txtAccountNo.Enabled = IsEnabled;
+            txtAccountName.Enabled = IsEnabled;
+            txtBalance.Enabled = IsEnabled;
+            txtDebit.Enabled = IsEnabled;
+            txtCredit.Enabled = IsEnabled;
+            txtParentAccountNo.Enabled = IsEnabled;
+            cbAccountType.Enabled = IsEnabled;
+            cbReport.Enabled = IsEnabled;
+            btnSave.Enabled = IsEnabled;
+            btnDelete.Enabled = IsEnabled; 
         }
 
 
@@ -67,8 +83,11 @@ namespace AccountingPR.Accounts
                 MessageBox.Show("لايوجد حساب بهذا الرقم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            _Mode = enMode.Update;
+            _EnbaleDesableTextBoxes(true);
+            txtAccountNo.Enabled = false; 
             txtAccountLevel.Text = _Account.AccountLevel.ToString();
-            txtAccountNo.Text = _Account.AccountID.ToString();
+            txtAccountNo.Text = _Account.AccountNo.ToString();
             txtAccountName.Text = _Account.AccountNameAr.ToString();
             txtBalance.Text = _Account.AccountBalance.ToString();
             txtDebit.Text = _Account.AccountDebit.ToString();
@@ -123,19 +142,35 @@ namespace AccountingPR.Accounts
             temp.SelectAll(); temp.Focus();
 
         }
+        private void TextBoxValidating(object sender, CancelEventArgs e)
+        {
+            TextBox temp = (TextBox)sender;
+            if (string.IsNullOrEmpty(temp.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(temp, "هذا الحقل لا يمكن ان يكون فارغا");
+            }
+            else
+            {
+                errorProvider1.SetError(temp, null);
 
+            }
+        }
         private void frmListAccounts_Load(object sender, EventArgs e)
         {
             _FillAccountTypeIDComboBox();
             _FillReportsCombomBox();
             _CreateNodes();
+            _EnbaleDesableTextBoxes(false);
+            this.AcceptButton = btnNew;
         }
 
         private void tvAccounts_AfterSelect(object sender, TreeViewEventArgs e)
         {
             int AccountNo = Convert.ToInt32(tvAccounts.SelectedNode.Tag.ToString());
             _LoadAccountInfo(AccountNo);
-            btnSave.Enabled = true;
+
+           
         }
 
         private void txtAccountNo_KeyPress(object sender, KeyPressEventArgs e)
@@ -159,10 +194,108 @@ namespace AccountingPR.Accounts
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
-            btnSave.Enabled = true; 
+            btnSave.Enabled = true;
+            this.AcceptButton = btnSave; 
             _Account = new clsAccount();
+            _Mode = enMode.AddNew;
+            _EnbaleDesableTextBoxes(true);
+            btnDelete.Enabled = false; 
             _ClearTextBoxes();
-            txtAccountName.Focus();
+            txtAccountNo.Focus();
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+
+            if (!this.ValidateChildren())
+            {
+                MessageBox.Show("يجب عليك اتمام تعبئة الخانات بالشروط المطلوبة");
+                return;
+            }
+
+            _Account.AccountParentNo = Convert.ToInt32(txtParentAccountNo.Text.Trim());
+            _Account.AccountBalance = Convert.ToDecimal(txtBalance.Text.Trim());
+            _Account.AccountDebit = Convert.ToDecimal(txtDebit.Text.Trim());  
+            _Account.AccountLevel=Convert.ToInt32(txtAccountLevel.Text.Trim());
+            _Account.AccountCredit=Convert.ToDecimal(txtAccountLevel.Text.Trim());
+            _Account.AccountReportID = cbReport.SelectedIndex + 1;
+            _Account.AccountNo = Convert.ToInt32(txtAccountNo.Text.Trim());
+            _Account.AccountNameAr=txtAccountName.Text.Trim();
+            _Account.AccountTypeID = cbAccountType.SelectedIndex + 1;
+            if(_Mode==enMode.Update)
+            {
+                if(MessageBox.Show("هل تريد تعديل الحساب بالفعل؟","تعديل",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation)==DialogResult.Cancel)
+                    return; 
+            }
+            if(await _Account.SaveAsync())
+            {
+                if (_Mode == enMode.Update)
+                {
+                    ToastHelper.ShowToast("تم التعديل بنجاح");
+                    _CreateNodes();
+                    btnDelete.Enabled = true;
+                    txtAccountNo.Enabled = false; 
+                    
+                }
+                else
+                {
+                    ToastHelper.ShowToast("تم الحفظ بنجاح");
+                _CreateNodes();
+                    btnDelete.Enabled = true;
+                    txtAccountNo.Enabled = false;
+
+
+                }
+
+            }
+            else
+            {
+                ToastHelper.ShowToast("حدثت مشكلة ما");
+
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            if(_Account==null)
+            {
+                ToastHelper.ShowToast("يجب عليك اختيار حساب اولا");
+                return;
+            }
+            if(await clsAccount.CheckAccountHasChildren(_Account.AccountNo))
+            {
+                MessageBox.Show("لايمكنك حذف هذا الحساب لان لديه ابناء", "لايمكن الحذف", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+          if(await clsAccount.CheckAccountHasJournal(_Account.AccountNo))
+            {
+                MessageBox.Show("لايمكن حذف هذا الحساب لارتباطه بقيود أخرى", "لايمكن الحذف", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+            if (MessageBox.Show("هل تريد تعديل الحساب بالفعل؟", "تعديل", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            {
+                if(await _Account.DeleteAsync())
+                {
+                    ToastHelper.ShowToast("تم الحذف بنجاح");
+                    _CreateNodes();
+                    _ClearTextBoxes();
+                    _EnbaleDesableTextBoxes(false);
+                    this.AcceptButton = btnNew; 
+                }
+                else
+                {
+                    ToastHelper.ShowToast("حدث خطأ ما!");
+
+                }
+            }
+        }
+
+        private void txtAccountLevel_Leave(object sender, EventArgs e)
+        {
+            TextBox temp = (TextBox)sender;
+            temp.BackColor = Color.White;
+            if (Convert.ToInt32(temp.Text) > 5)
+                cbAccountType.SelectedIndex = 1;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AccountingPR.Accounts;
+using AccountingPR.Bank;
 using AccountingPR.Company;
 using AccountingPR.System_Settings;
 using AccountingPR.Users;
@@ -60,6 +61,18 @@ namespace AccountingPR
         {
             frmListAccounts frm = new frmListAccounts();
             frm.ShowDialog(); 
+        }
+
+        private void الصناديقToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListBanksCashes frm = new frmListBanksCashes(frmListBanksCashes.enScreen.CashesScreen);
+            frm.ShowDialog();
+        }
+
+        private void البنوكToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListBanksCashes frm = new frmListBanksCashes(frmListBanksCashes.enScreen.BanksScreen);
+            frm.ShowDialog();
         }
     }
 }
